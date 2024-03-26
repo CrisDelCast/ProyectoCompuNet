@@ -1,20 +1,20 @@
 # Acta de inicio Proyecto SGIV: 
 ## Índice
-- Metodología, Estándares y Estructura del proyecto
-    - Canales de comunicación y herramientas:
-    - Daily Meeting:
-    - Code Style:
-    - Commit Standards:
-- Configuración y Backlog:
-    - JIRA
-    - Base de Datos - PostgreSQL
-- Avance en Requerimientos R1, R2 y Testing
-    - R1 - Gestión de Usuarios y Roles
-    - R2 - Catalogación Dinámica de Destinos y Servicios
-    - Testing - R1 y R2
-- Enlaces
+- [Estándares y Estructura del proyecto](#estándares-y-estructura-del-proyecto)
+    - [Canales de comunicación y herramientas:](#canales-de-comunicación-y-herramientas)
+    - [Daily Meeting:](#daily-meeting)
+    - [Code Style:](#code-style)
+    - [Commit Standards:](#commit-standards)
+- [Configuración y Backlog:](#configuración-y-backlog)
+    - [JIRA](#jira)
+    - [Base de Datos](#base-de-datos---postgresql)
+- [Avance en Requerimientos R1, R2 y Testing](#avance-en-requerimientos-r1-r2-y-testing)
+    - [R1 - Gestión de Usuarios y Roles](#r1---gestión-de-usuarios-y-roles)
+    - [R2 - Catalogación Dinámica de Destinos y Servicios](#r2---catalogación-dinámica-de-destinos-y-servicios)
+    - [Testing - R1 y R2](#testing---r1-y-r2)
+- [Enlaces](#enlaces)
 
-## Metodología, Estándares y Estructura del proyecto
+## Estándares y Estructura del proyecto
 ### Canales de comunicación y herramientas:
 -	WhatsApp (chat)
 -	Discord (meetings)
