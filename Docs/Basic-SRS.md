@@ -12,7 +12,7 @@
     2. [Requisitos No-Funcionales](#42-requisitos-no-funcionales)
     3. [Requisitos Futuros](#43-requisitos-futuros)
 5. [Apéndices](#5-apéndices)
-    3. [Glosario de Términos](#51-glosario-de-términos)
+    1. [Glosario de Términos](#51-glosario-de-términos)
 
 
 ## 1. Introducción
