@@ -37,6 +37,7 @@ public class Destino {
     private String estado;
     @Column(name="id_tide", nullable = false)
     private Integer idTide;
+    
 	public Integer getIdDest() {
 		return idDest;
 	}
