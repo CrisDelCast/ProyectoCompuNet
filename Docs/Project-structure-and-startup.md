@@ -94,13 +94,15 @@ Criterios de aceptación (máximo 4), que se dividen en:
 -	Dado (Given): Se utiliza para describir el contexto inicial del sistema: la escena del escenario. Su objetivo es poner el sistema en un estado concreto antes de que el usuario (o sistema externo) comience a interactuar con el sistema (en los WHEN).
 -	Cuando (When): Se utiliza para describir un evento o una acción, desde una persona que interactúa con el sistema o un evento desencadenado por otro sistema.
 -	Entonces (Then): Se utiliza para describir el resultado esperado. La definición de un THEN debe usar una aserción para comparar el resultado real (lo que el sistema realmente hace) con el resultado esperado (lo que se supone que debe hacer el sistema).
+
 Las Historias de Usuario deben ser concisas. Ejemplo:
-Feature: Búsqueda en Google
-Como usuario web, quiero buscar en Google para responder mis dudas.
-Escenario: Pantalla de búsqueda simple en Google
-Dado: Un navegador web en la página de Google
-Cuando: Se introduce la palabra de búsqueda “agile”
-Entonces: Se muestra el resultado de “agile”
+
+    Feature: Búsqueda en Google
+        Como usuario web, quiero buscar en Google para responder mis dudas.
+    Escenario: Pantalla de búsqueda simple en Google
+    Dado: Un navegador web en la página de Google
+    Cuando: Se introduce la palabra de búsqueda “agile”
+    Entonces: Se muestra el resultado de “agile”
 
 ### Base de Datos - PostgreSQL
 <b>Responsable:</b> J. Lora
