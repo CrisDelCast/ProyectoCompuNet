@@ -31,10 +31,7 @@ public class Usuario {
     private String usuModificador;
     @Column(name="estado", nullable = false)
     private String estado;
-    @Column(name="idRol")
-    private Integer idRol;
-    
-    
+   
 	public Integer getIdUsua() {
 		return idUsua;
 	}
@@ -95,12 +92,6 @@ public class Usuario {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Integer getIdRol() {
-		return idRol;
-	}
-	public void setIdRol(Integer idRol) {
-		this.idRol = idRol;
-	}
-    
+
     
 }

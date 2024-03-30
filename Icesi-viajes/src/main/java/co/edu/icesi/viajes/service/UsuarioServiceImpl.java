@@ -57,8 +57,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Long count() {
         return usuarioRepository.count();
     }
-    
-    public Usuario crearUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaCreacion, String usuCreador, String estado, Integer idRol) {
+    @Override
+    public Usuario crearUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaCreacion,Date fechaModificacion, String usuCreador, String usuModificador, String estado) {
         Usuario usuario = new Usuario();
         usuario.setIdUsua(idUsua);
         usuario.setLogin(login);
@@ -68,13 +68,11 @@ public class UsuarioServiceImpl implements UsuarioService{
         usuario.setFechaCreacion(fechaCreacion);
         usuario.setUsuCreador(usuCreador);
         usuario.setEstado(estado);
-        usuario.setIdRol(idRol);
-
         return usuarioRepository.save(usuario);
     }
   
-    
-        public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaCreacion, String usuCreador, String estado, Integer idRol) throws Exception {
+    @Override
+    public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception {
             Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsua);
             if (optionalUsuario.isPresent()) {
                 Usuario usuario = optionalUsuario.get();
@@ -82,26 +80,30 @@ public class UsuarioServiceImpl implements UsuarioService{
                 usuario.setPassword(password);
                 usuario.setNombre(nombre);
                 usuario.setIdentificacion(identificacion);
-                usuario.setFechaCreacion(fechaCreacion);
-                usuario.setUsuCreador(usuCreador);
+                usuario.setFechaModificacion(fechaModificacion);
                 usuario.setEstado(estado);
-                usuario.setIdRol(idRol);
 
                 return usuarioRepository.save(usuario);
             } else {
                 throw new Exception("Usuario no encontrado");
             }
-        }
+      }
 
-        
-        public void eliminarUsuario(Integer idUsua) throws Exception {
+     @Override   
+     public void eliminarUsuario(Integer idUsua) throws Exception {
             Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsua);
             if (optionalUsuario.isPresent()) {
                 usuarioRepository.delete(optionalUsuario.get());
             } else {
                 throw new Exception("Usuario no encontrado");
             }
-        }
+     }
+
+	@Override
+	public Usuario consultarUsuarioPorId(Integer idUsua) {
+		
+		return usuarioRepository.consultarUsuarioPorId(idUsua);
+	}
     
 
     
