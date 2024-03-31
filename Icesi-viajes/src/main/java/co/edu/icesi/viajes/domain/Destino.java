@@ -20,11 +20,11 @@ public class Destino {
     @Column(name="descripcion", nullable = false)
     private String descripcion;
     @Column(name="tierra", nullable = false)
-    private String tierra;
+    private char tierra;
     @Column(name="aire", nullable = false)
-    private String aire;
+    private char aire;
     @Column(name="mar", nullable = false)
-    private String mar;
+    private char mar;
     @Column(name="fecha_creacion", nullable = false)
     private Date fechaCreacion;
     @Column(name="fecha_modificacion")
@@ -37,6 +37,11 @@ public class Destino {
     private String estado;
     @Column(name="id_tide", nullable = false)
     private Integer idTide;
+    @Column(name="id_deca", nullable = false)
+    private Integer idDestinationCategory;
+    
+    
+    
 	public Integer getIdDest() {
 		return idDest;
 	}
@@ -61,22 +66,22 @@ public class Destino {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getTierra() {
+	public char getTierra() {
 		return tierra;
 	}
-	public void setTierra(String tierra) {
+	public void setTierra(char tierra) {
 		this.tierra = tierra;
 	}
-	public String getAire() {
+	public char getAire() {
 		return aire;
 	}
-	public void setAire(String aire) {
+	public void setAire(char aire) {
 		this.aire = aire;
 	}
-	public String getMar() {
+	public char getMar() {
 		return mar;
 	}
-	public void setMar(String mar) {
+	public void setMar(char mar) {
 		this.mar = mar;
 	}
 	public Date getFechaCreacion() {
@@ -114,7 +119,12 @@ public class Destino {
 	}
 	public void setIdTide(Integer idTide) {
 		this.idTide = idTide;
+	}    
+    
+	public void setIdDestinationCategoy(Integer idDestinationCategory) {
+		this.idDestinationCategory = idDestinationCategory;
 	}
+
     
     
 }
