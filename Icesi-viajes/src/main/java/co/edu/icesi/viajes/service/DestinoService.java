@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 
 public interface DestinoService extends GenericService<Destino,Integer>{
-	public List<Destino> consultarDestinoPorCodigoEstado(String codigo);
+	public Destino consultarDestinoPorCodigo(String codigo);
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino);
 	public List<Destino> consultarDestinosActivos();
+	public List<Destino> getAllDestinos();
 
 
 }

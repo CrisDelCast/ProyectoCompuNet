@@ -11,12 +11,15 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DestinoRepository extends JpaRepository<Destino, Integer> {
 	//11
-	@Query("select tp from Destino tp where tp.codigo = ?1 and tp.estado = 'A'")
-	public List<Destino> consultarDestinoPorCodigoEstado(String codigo);
+	@Query("select tp from Destino tp where tp.codigo = ?1 ")
+	public Destino consultarDestinoPorCodigo(String codigo);
 	//12
 	@Query("select tp from Destino tp where tp.codigo = ?1")
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino);
 	//13
 	@Query("select tp from Destino tp where tp.estado = 'A'")
 	public List<Destino> consultarDestinosActivos();
+	//obetener todos los destinos
+	@Query("select tp from Destino tp" )
+	public List<Destino> getAllDestinos();
 }

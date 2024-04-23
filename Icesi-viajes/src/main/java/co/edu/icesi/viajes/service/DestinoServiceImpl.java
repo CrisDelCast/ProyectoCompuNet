@@ -58,9 +58,9 @@ public class DestinoServiceImpl implements DestinoService{
     }
 
 	@Override
-	public List<Destino> consultarDestinoPorCodigoEstado(String codigo) {
+	public Destino consultarDestinoPorCodigo(String codigo) {
 		
-		return destinoRepository.consultarDestinoPorCodigoEstado(codigo);
+		return destinoRepository.consultarDestinoPorCodigo(codigo);
 	}
 
 	@Override
@@ -71,5 +71,10 @@ public class DestinoServiceImpl implements DestinoService{
 	@Override
 	public List<Destino> consultarDestinosActivos() {
 		return destinoRepository.consultarDestinosActivos();
+	}
+
+	@Override
+	public List<Destino> getAllDestinos() {
+		return destinoRepository.getAllDestinos();
 	}
 }

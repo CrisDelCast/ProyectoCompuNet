@@ -17,14 +17,14 @@ class TestDestino {
     private DestinoService Destino;
 
 	@Test
-    void consultarDestinoPorCodigoEstado(){
+    void consultarDestinoPorCodigo(){
 	 
 	 
-	 List<Destino> LDestino = Destino.consultarDestinoPorCodigoEstado("D01");
+		Destino LDestino = Destino.consultarDestinoPorCodigo("D01");
 
-	 	for(Destino Dstn: LDestino){
-	 		System.out.println(Dstn.getCodigo() +"-"+Dstn.getNombre()+"-"+Dstn.getEstado());
-	 	}
+	 	
+	 		System.out.println(LDestino.getCodigo() +"-"+LDestino.getNombre()+"-"+LDestino.getEstado());
+	 		System.out.println("correctamente");
         
  	}
 	@Test
@@ -49,6 +49,19 @@ class TestDestino {
 	 	for(Destino Dstn: lstDestino){
             System.out.println(Dstn.getIdTide() +"-"+Dstn.getNombre());
         }
+        
+ 	}
+	@Test
+    void getAllDestinos(){
+	 
+	 
+	 List<Destino> lstDestinos = Destino.getAllDestinos();
+
+       
+	 	for(Destino Dstn: lstDestinos){
+            System.out.println(Dstn.getIdTide() +"-"+Dstn.getNombre());
+        }
+	 	System.out.println("salio correcto");
         
  	}
 	
