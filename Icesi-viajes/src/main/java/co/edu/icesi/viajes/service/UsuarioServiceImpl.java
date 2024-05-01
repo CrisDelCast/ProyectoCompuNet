@@ -56,4 +56,14 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Long count() {
         return usuarioRepository.count();
     }
+    
+    @Override
+    public Usuario autenticarUsuario(String login, String password) {
+        
+        Usuario usuario = usuarioRepository.findByLogin(login);
+        if (usuario != null && usuario.getPassword().equals(password)) {
+            return usuario;
+        }
+        return null;
+    }
 }
