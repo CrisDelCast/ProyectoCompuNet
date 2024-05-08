@@ -11,4 +11,6 @@ public interface UsuarioService extends GenericService<Usuario,Integer>{
 	public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception;
 	public void eliminarUsuario(Integer idUsua) throws Exception;
 	public Usuario consultarUsuarioPorId(Integer idUsua);
+	public Usuario autenticarUsuario(String login, String password);
+
 }

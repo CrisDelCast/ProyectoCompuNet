@@ -1,6 +1,5 @@
 package co.edu.icesi.viajes.service;
 
-import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.repository.DestinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,4 +76,8 @@ public class DestinoServiceImpl implements DestinoService{
 	public List<Destino> getAllDestinos() {
 		return destinoRepository.getAllDestinos();
 	}
+	public List<Destino> consultByCategory(Integer idDestinationCategory) {
+		return destinoRepository.consultByCategory(idDestinationCategory);
+	}
+	
 }

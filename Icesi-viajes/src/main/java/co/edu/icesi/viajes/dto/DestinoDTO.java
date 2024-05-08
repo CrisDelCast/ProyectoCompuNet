@@ -7,9 +7,9 @@ public class DestinoDTO {
     private String codigo;
     private String nombre;
     private String descripcion;
-    private String tierra;
-    private String aire;
-    private String mar;
+    private char tierra;
+    private char aire;
+    private char mar;
     private Date fechaCreacion;
     private Date fechaModificacion;
     private String usuCreador;
@@ -24,8 +24,8 @@ public class DestinoDTO {
     }
     
     // Constructor con todos los campos
-    public void DestinoDto(Integer idDest, String codigo, String nombre, String descripcion, String tierra,
-                      String aire, String mar, Date fechaCreacion, Date fechaModificacion,
+    public void DestinoDto(Integer idDest, String codigo, String nombre, String descripcion, char tierra,
+                      char aire, char mar, Date fechaCreacion, Date fechaModificacion,
                       String usuCreador, String usuModificador, String estado, Integer idTide) {
         this.idDest = idDest;
         this.codigo = codigo;
@@ -75,28 +75,28 @@ public class DestinoDTO {
         this.descripcion = descripcion;
     }
     
-    public String getTierra() {
+    public char getTierra() {
         return tierra;
     }
     
-    public void setTierra(String tierra) {
-        this.tierra = tierra;
+    public void setTierra(char c) {
+        this.tierra = c;
     }
     
-    public String getAire() {
-        return aire;
+    public char getAire() {
+		return aire;
     }
     
-    public void setAire(String aire) {
-        this.aire = aire;
+    public void setAire(char c) {
+        this.aire = c;
     }
     
-    public String getMar() {
+    public char getMar() {
         return mar;
     }
     
-    public void setMar(String mar) {
-        this.mar = mar;
+    public void setMar(char c) {
+        this.mar = c;
     }
     
     public Date getFechaCreacion() {

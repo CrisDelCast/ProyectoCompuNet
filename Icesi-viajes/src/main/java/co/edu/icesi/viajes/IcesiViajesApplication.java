@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.dto.TipoDestinoDTO;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.repository.ClienteRepository;
@@ -23,9 +22,10 @@ public class IcesiViajesApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(IcesiViajesApplication.class, args);
 	}
-
+	//Metodo Run
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("Prueba conexión");
 		consultarTipoDestinoPorEstado();
 		consultarPortelefonoQuery();
 	}

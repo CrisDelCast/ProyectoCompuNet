@@ -29,9 +29,9 @@ public class Usuario {
     private String usuCreador;
     @Column(name="usu_modificador")
     private String usuModificador;
-    @Column(name="estado", nullable = false)
+    @Column(name="estado", nullable = false)   
     private String estado;
-   
+
 	public Integer getIdUsua() {
 		return idUsua;
 	}
@@ -92,6 +92,4 @@ public class Usuario {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
-    
 }
