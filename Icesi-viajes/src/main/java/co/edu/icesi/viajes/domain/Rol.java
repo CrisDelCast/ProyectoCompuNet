@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQueries;
 import jakarta.persistence.NamedNativeQuery;
@@ -15,13 +17,14 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name="ROL")
+@Table(name="roles")
 public class Rol implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_Rol")
     private Integer idRol;
     @Column(name="codigo",nullable = false)
@@ -56,43 +59,5 @@ public class Rol implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-    
-	
-	
-	
-	
-	
-}
-=======
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "roles")
-public class Rol {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
-    @Column(name = "nombre", nullable = false, unique = true)
-    private String nombre;
-
-    // Getters y Setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    	
 }
