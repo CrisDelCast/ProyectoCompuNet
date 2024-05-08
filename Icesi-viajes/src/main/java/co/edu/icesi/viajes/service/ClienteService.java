@@ -19,6 +19,8 @@ public interface ClienteService extends GenericService<Cliente,Integer>{
 	public List<Cliente> consultarPorTipoIdentificacion(String codigo, Pageable pageable);
 	public List<Cliente> consultarPorApellido(String apellido);
 	public List<Cliente> consultarPortelefono(String telefono1);
+	public List<Cliente> obtenerTodosLosCientes();
+	public Cliente obtenerClientePorId(Integer id);
 
 
 

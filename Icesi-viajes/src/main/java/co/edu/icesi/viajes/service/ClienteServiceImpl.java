@@ -115,4 +115,16 @@ public class ClienteServiceImpl implements ClienteService{
 	
 		return clienteRepository.consultarPortelefono(telefono1);
 	}
+
+	@Override
+	public List<Cliente> obtenerTodosLosCientes() {
+		// TODO Auto-generated method stub
+		return clienteRepository.findAll();
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Cliente obtenerClientePorId(Integer id) {
+		return clienteRepository.obtenerClientePorId(id);
+	}
 }
