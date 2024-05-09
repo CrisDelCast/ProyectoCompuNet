@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -48,7 +49,11 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	 //16
 	 @Query(nativeQuery = true)
 		public List<ClienteDTO> consultarClientesPorFiltro(@Param("pEstado") String estado, @Param("pNumId") String numeroIdentificacion, @Param("pTipoId") Integer tipoIdentificacion, @Param("pNombre") String nombre );
-
+	  
+	@Modifying
+	@Query("UPDATE Cliente u SET u.nombre = :nombre, u.estado = :estado WHERE u.idClie = :id")
+	 void updateUsuario(@Param("id") Integer id, @Param("nombre") String nombre, @Param("estado") String estado);
 	    
+	 
 	
 }

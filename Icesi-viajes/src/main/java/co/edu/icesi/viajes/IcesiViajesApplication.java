@@ -20,11 +20,4 @@ public class IcesiViajesApplication implements CommandLineRunner, WebMvcConfigur
         
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**") 
-                .allowedOrigins("http://localhost:3000") 
-                .allowedMethods("GET", "POST", "PUT", "DELETE") 
-                .allowCredentials(true); 
-    }
 }

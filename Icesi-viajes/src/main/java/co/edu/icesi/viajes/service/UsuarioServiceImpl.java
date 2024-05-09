@@ -66,4 +66,20 @@ public class UsuarioServiceImpl implements UsuarioService{
         }
         return null;
     }
+    
+    @Override
+    public Usuario actualizarUsuario(Integer id, Usuario usuarioActualizado) throws Exception {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            usuario.setNombre(usuarioActualizado.getNombre());
+            usuario.setEstado(usuarioActualizado.getEstado());
+            usuarioRepository.updateUsuario(id, usuario.getNombre(), usuario.getEstado());
+            return usuario;
+        } else {
+            throw new Exception("Usuario no encontrado");
+        }
+    }
+
+    
 }

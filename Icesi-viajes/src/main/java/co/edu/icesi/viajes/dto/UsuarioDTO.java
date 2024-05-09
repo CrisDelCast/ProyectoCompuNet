@@ -15,8 +15,17 @@ public class UsuarioDTO {
         this.estado = estado;
         this.fechaVinculacion = fechaVinculacion;
     }
+    
 
-    // Getters y Setters
+    public UsuarioDTO(Integer id, String nombre, String estado) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.estado = estado;
+	}
+
+
+	// Getters y Setters
 
     public Integer getId() {
         return id;
