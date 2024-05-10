@@ -4,4 +4,5 @@ import co.edu.icesi.viajes.domain.Plan;
 
 
 public interface PlanService extends GenericService<Plan,Integer>{
+	
 }

@@ -48,8 +48,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	 //16
 	 @Query(nativeQuery = true)
 		public List<ClienteDTO> consultarClientesPorFiltro(@Param("pEstado") String estado, @Param("pNumId") String numeroIdentificacion, @Param("pTipoId") Integer tipoIdentificacion, @Param("pNombre") String nombre );
-	 @Query("select tp from Cliente tp where tp.id_clie = ?1")
-	    public Cliente obtenerClientePorId(Integer id);
+	 //@Query("select tp from Cliente tp where tp.id_clie = ?1")
+	   // public Cliente obtenerClientePorId(Integer id);
 	    
 	
 }

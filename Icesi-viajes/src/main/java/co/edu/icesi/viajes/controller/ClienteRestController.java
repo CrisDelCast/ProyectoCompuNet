@@ -22,8 +22,8 @@ public class ClienteRestController {
     }
 
     // Obtener un cliente por su ID
-    @GetMapping("/{id}")
-    public Cliente obtenerClientePorId(@PathVariable("id") Integer id) {
-        return clienteService.obtenerClientePorId(id);
-    }
+    //@GetMapping("/{id}")
+    //public Cliente obtenerClientePorId(@PathVariable("id") Integer id) {
+       // return clienteService.obtenerClientePorId(id);
+    //}
 }

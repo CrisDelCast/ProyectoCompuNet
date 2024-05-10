@@ -122,9 +122,11 @@ public class ClienteServiceImpl implements ClienteService{
 		return clienteRepository.findAll();
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public Cliente obtenerClientePorId(Integer id) {
-		return clienteRepository.obtenerClientePorId(id);
-	}
+	
+
+	//@SuppressWarnings("deprecation")
+	//@Override
+	//public Cliente obtenerClientePorId(Integer id) {
+		//return clienteRepository.obtenerClientePorId(id);
+	//}
 }
