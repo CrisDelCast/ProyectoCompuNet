@@ -77,4 +77,58 @@ public class ClienteServiceImpl implements ClienteService{
         }
     }
 
+	@Override
+	public Page<Cliente> findByEstadoOrderedAndPage(String string, PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente consultarClientePorCorreoElectronicoIgnoreCase(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorNombre(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorRangoFecha(Date date, Date date2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Long contarPorEstado(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorTipoIdentificacion(String string, PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorApellido(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPortelefono(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorNumeroIdentificacion(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
