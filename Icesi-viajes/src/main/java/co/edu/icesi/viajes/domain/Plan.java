@@ -41,8 +41,8 @@ public class Plan {
     private String estado;
     @Column(name="id_clie", nullable = false)
     private Integer idClie;
-    @Column(name="id_usua", nullable = false)
-    private Integer idUsua;
+    @Column(name="id_destinos", nullable = false)
+    private Integer id_destinos;
     //geters
 	public Integer getIdPlan() {
 		return idPlan;
@@ -134,11 +134,11 @@ public class Plan {
 	public void setIdClie(Integer idClie) {
 		this.idClie = idClie;
 	}
-	public Integer getIdUsua() {
-		return idUsua;
+	public Integer getIdDestinos() {
+		return id_destinos;
 	}
-	public void setIdUsua(Integer idUsua) {
-		this.idUsua = idUsua;
+	public void setIdDestinos(Integer id_destinos) {
+		this.id_destinos = id_destinos;
 	}
     
     

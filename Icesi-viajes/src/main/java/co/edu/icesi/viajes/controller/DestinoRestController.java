@@ -1,24 +1,32 @@
 package co.edu.icesi.viajes.controller;
 
+import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.dto.DestinoDTO;
 import co.edu.icesi.viajes.mapper.DestinoMapper;
 import co.edu.icesi.viajes.service.DestinoService;
+import co.edu.icesi.viajes.service.DestinoServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/destinos")
+@RequestMapping("/api/destinos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DestinoRestController {
     
     @Autowired
-    private DestinoService destinoService;
+    private DestinoServiceImpl destinoService;
     
-    @GetMapping
-    public List<DestinoDTO> getAllDestinos() {
-        return DestinoMapper.destinoListToDestinoDtoList(destinoService.getAllDestinos());
+    
+    
+
+    @GetMapping("/disponibles")
+    public List<Destino> getDestinosDisponibles() {
+        return destinoService.findAll();
     }
+
     
     //@GetMapping("/{id}")
     //public DestinoDTO getDestinoById(@PathVariable Integer id) {

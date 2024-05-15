@@ -41,6 +41,7 @@ public class Destino {
     private Integer idDestinationCategory;
     
 	public Integer getIdDest() {
+		
 		return idDest;
 	}
 	public void setIdDest(Integer idDest) {

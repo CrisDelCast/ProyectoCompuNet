@@ -19,7 +19,7 @@ public class PlanDTO {
     private String usuModificador;
     private String estado;
     private Integer idClie;
-    private Integer idUsua;
+    private Integer idDestinos;
     
     // Constructor, getters y setters
     
@@ -28,7 +28,7 @@ public class PlanDTO {
 
     public PlanDTO(String codigo, String descripcionSolicitud, String nombre, Integer cantidadPersonas,
                    Date fechaSolicitud, Date fechaInicioViaje, Date fechaFinViaje, Double valorTotal,
-                   String usuCreador, String estado, Integer idClie, Integer idUsua) {
+                   String usuCreador, String estado, Integer idClie, Integer idDestinos) {
         this.codigo = codigo;
         this.descripcionSolicitud = descripcionSolicitud;
         this.nombre = nombre;
@@ -40,8 +40,19 @@ public class PlanDTO {
         this.usuCreador = usuCreador;
         this.estado = estado;
         this.idClie = idClie;
-        this.idUsua = idUsua;
+        this.idDestinos = idDestinos;
     }
+    public PlanDTO(String codigo, String nombre, Integer cantidadPersonas, Date fechaInicioViaje, Date fechaFinViaje, Double valorTotal,Integer idDestinos) {
+		 this.codigo = codigo;
+		 this.nombre = nombre;
+		 this.cantidadPersonas = cantidadPersonas;
+		 this.fechaInicioViaje = fechaInicioViaje;
+		 this.fechaFinViaje = fechaFinViaje;
+		 this.valorTotal = valorTotal;	 
+		 this.idDestinos = idDestinos;
+    }
+    
+    
     // Getters y setters para todos los atributos
 
     public Integer getIdPlan() {
@@ -164,11 +175,11 @@ public class PlanDTO {
         this.idClie = idClie;
     }
 
-    public Integer getIdUsua() {
-        return idUsua;
+    public Integer getIdDestinos() {
+        return idDestinos;
     }
 
-    public void setIdUsua(Integer idUsua) {
-        this.idUsua = idUsua;
+    public void setIdDestinos(Integer idDestinos) {
+        this.idDestinos = idDestinos;
     }
 }

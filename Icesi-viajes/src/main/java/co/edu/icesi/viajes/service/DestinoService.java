@@ -9,7 +9,6 @@ public interface DestinoService extends GenericService<Destino,Integer>{
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino);
 	public List<Destino> consultarDestinosActivos();
 	public List<Destino> getAllDestinos();
-
 	public List<Destino> consultByCategory(Integer idDestinationCategory);
 
 

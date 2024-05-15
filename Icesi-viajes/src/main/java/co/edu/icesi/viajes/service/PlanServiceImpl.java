@@ -1,11 +1,14 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.Plan;
+import co.edu.icesi.viajes.dto.PlanDTO;
+import co.edu.icesi.viajes.mapper.PlanMapper;
 import co.edu.icesi.viajes.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,4 +58,16 @@ public class PlanServiceImpl implements PlanService{
     public Long count() {
         return planRepository.count();
     }
+    @Override
+    public Plan crearPlan(PlanDTO planDTO) {
+        Plan plan = PlanMapper.planDtoToPlan(planDTO);;
+        // Resto de asignaciones
+        // Luego, podrías guardar el plan utilizando el repositorio
+        return planRepository.save(plan);
+    }
+	
+
+	
+
+	
 }

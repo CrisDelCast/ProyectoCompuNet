@@ -4,14 +4,16 @@ import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.dto.PlanDTO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.mapstruct.factory.Mappers;
 
 public class PlanMapper {
     
     
-    public static PlanMapper INSTANCE = Mappers.getMapper(PlanMapper.class);
+    private static int contadorIdPlan = 0;
 
 
 	public static PlanDTO planToPlanDto(Plan plan) {
@@ -35,7 +37,7 @@ public class PlanMapper {
         planDto.setUsuModificador(plan.getUsuModificador());
         planDto.setEstado(plan.getEstado());
         planDto.setIdClie(plan.getIdClie());
-        planDto.setIdUsua(plan.getIdUsua());
+        planDto.setIdDestinos(plan.getIdDestinos());
         
         return planDto;
     }
@@ -44,24 +46,25 @@ public class PlanMapper {
         if (planDto == null) {
             return null;
         }
-        
+        Date fechaActual = new Date();
         Plan plan = new Plan();
-        plan.setIdPlan(planDto.getIdPlan());
+        contadorIdPlan++;
+        plan.setIdPlan(contadorIdPlan);
         plan.setCodigo(planDto.getCodigo());
-        plan.setDescripcionSolicitud(planDto.getDescripcionSolicitud());
+        plan.setDescripcionSolicitud("");
         plan.setNombre(planDto.getNombre());
         plan.setCantidadPersonas(planDto.getCantidadPersonas());
-        plan.setFechaSolicitud(planDto.getFechaSolicitud());
+        plan.setFechaSolicitud(fechaActual);
         plan.setFechaInicioViaje(planDto.getFechaInicioViaje());
         plan.setFechaFinViaje(planDto.getFechaFinViaje());
         plan.setValorTotal(planDto.getValorTotal());
-        plan.setFechaCreacion(planDto.getFechaCreacion());
-        plan.setFechaModificacion(planDto.getFechaModificacion());
-        plan.setUsuCreador(planDto.getUsuCreador());
-        plan.setUsuModificador(planDto.getUsuModificador());
-        plan.setEstado(planDto.getEstado());
-        plan.setIdClie(planDto.getIdClie());
-        plan.setIdUsua(planDto.getIdUsua());
+        plan.setFechaCreacion(fechaActual);
+        plan.setFechaModificacion(fechaActual);
+        plan.setUsuCreador("");
+        plan.setUsuModificador("");
+        plan.setEstado("A");
+        plan.setIdClie(1);
+        plan.setIdDestinos(planDto.getIdDestinos());
         
         return plan;
     }
