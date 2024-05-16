@@ -2,7 +2,6 @@ package co.edu.icesi.viajes.service;
 
 import java.util.Date;
 
-import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.Usuario;
 
 
@@ -12,5 +11,5 @@ public interface UsuarioService extends GenericService<Usuario,Integer>{
 	public void eliminarUsuario(Integer idUsua) throws Exception;
 	public Usuario consultarUsuarioPorId(Integer idUsua);
 	public Usuario autenticarUsuario(String login, String password);
-
+	Usuario actualizarUsuario(Integer id, Usuario usuarioActualizado) throws Exception;
 }

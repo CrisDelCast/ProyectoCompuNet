@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.TipoDestino;
+import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -21,7 +22,6 @@ public class ClienteServiceImpl implements ClienteService{
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Override
     public List<Cliente> findAll() {
         List<Cliente> lstCliente = clienteRepository.findAll();
         return lstCliente;
@@ -62,64 +62,90 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteRepository.count();
     }
     
-	
+
+    @Override
+    public Cliente actualizarCliente(Integer id, Cliente clienteActualizado) throws Exception {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
+            cliente.setNombre(clienteActualizado.getNombre());
+            cliente.setEstado(clienteActualizado.getEstado());
+            return clienteRepository.save(cliente);
+        } else {
+            throw new Exception("Cliente no encontrado");
+        }
+    }
 
 	@Override
-	public Page<Cliente> findByEstadoOrderedAndPage(String estado, Pageable pageable) {
-		
-		return clienteRepository.findByEstadoOrderedAndPage(estado, pageable);
+	public Page<Cliente> findByEstadoOrderedAndPage(String string, PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Cliente consultarClientePorCorreoElectronicoIgnoreCase(String correoElectronico) {
-		
-		return clienteRepository.consultarClientePorCorreoElectronicoIgnoreCase(correoElectronico);
+	public Cliente consultarClientePorCorreoElectronicoIgnoreCase(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Cliente> consultarPorNumeroIdentificacion(String numeroIdentificacion) {
-		
-		return clienteRepository.consultarPorNumeroIdentificacion(numeroIdentificacion);
+	public List<Cliente> consultarPorNombre(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Cliente> consultarPorNombre(String nombre) {
-		
-		return clienteRepository.consultarPorNombre(nombre);
+	public List<Cliente> consultarPorRangoFecha(Date date, Date date2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Cliente> consultarPorRangoFecha(Date fechaInicio, Date fechaFin) {
-		
-		return clienteRepository.consultarPorRangoFecha(fechaInicio, fechaFin);
+	public Long contarPorEstado(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Long contarPorEstado(String estado) {
-		
-		return clienteRepository.contarPorEstado(estado);
+	public List<Cliente> consultarPorApellido(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Cliente> consultarPorTipoIdentificacion(String codigo, Pageable pageable) {
-		return clienteRepository.consultarPorTipoIdentificacion(codigo, pageable);
+	public List<Cliente> consultarPortelefono(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<Cliente> consultarPorApellido(String apellido) {
-		return clienteRepository.consultarPorApellido(apellido);
-	}
-
-	@Override
-	public List<Cliente> consultarPortelefono(String telefono1) {
-	
-		return clienteRepository.consultarPortelefono(telefono1);
+	public List<Cliente> consultarPorNumeroIdentificacion(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Cliente> obtenerTodosLosCientes() {
 		// TODO Auto-generated method stub
 		return clienteRepository.findAll();
+	}
+
+	@Override
+	public Page<Cliente> findByEstadoOrderedAndPage(String estado, java.awt.print.Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorTipoIdentificacion(String codigo, java.awt.print.Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> consultarPorTipoIdentificacion(String codigo, PageRequest pageRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
@@ -129,4 +155,5 @@ public class ClienteServiceImpl implements ClienteService{
 	//public Cliente obtenerClientePorId(Integer id) {
 		//return clienteRepository.obtenerClientePorId(id);
 	//}
+
 }

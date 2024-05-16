@@ -21,7 +21,7 @@ public interface DestinoRepository extends JpaRepository<Destino, Integer> {
 	@Query("select tp from Destino tp where tp.codigo = ?1")
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino);
 	
-	//13
+	
 	@Query("select tp from Destino tp where tp.estado = 'A'")
 	public List<Destino> consultarDestinosActivos();
 	//obetener todos los destinos

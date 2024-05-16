@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.dto;
 import java.util.Date;
 
 public class DestinoDTO {
+
     private Integer idDest;
     private String codigo;
     private String nombre;
@@ -147,3 +148,5 @@ public class DestinoDTO {
         this.idTide = idTide;
     }
 }
+
+    
