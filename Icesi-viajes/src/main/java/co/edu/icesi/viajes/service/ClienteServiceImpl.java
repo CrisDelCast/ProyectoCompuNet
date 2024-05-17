@@ -119,9 +119,9 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public List<Cliente> consultarPorNumeroIdentificacion(String string) {
+	public Cliente consultarPorNumeroIdentificacion(String string) {
 		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.consultarPorNumeroIdentificacion(string);
 	}
 
 	@Override

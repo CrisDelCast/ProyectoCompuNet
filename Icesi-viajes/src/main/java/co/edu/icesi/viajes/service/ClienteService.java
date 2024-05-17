@@ -15,7 +15,7 @@ public interface ClienteService extends GenericService<Cliente,Integer>{
 	
 	public Page<Cliente> findByEstadoOrderedAndPage(String estado, Pageable pageable);
 	public Cliente consultarClientePorCorreoElectronicoIgnoreCase(String correoElectronico);
-	public List<Cliente> consultarPorNumeroIdentificacion(String numeroIdentificacion);
+	public Cliente consultarPorNumeroIdentificacion(String numeroIdentificacion);
 	public List<Cliente> consultarPorNombre(String nombre);
 	public List<Cliente> consultarPorRangoFecha(Date fechaInicio, Date fechaFin);
 	public Long contarPorEstado(String estado);

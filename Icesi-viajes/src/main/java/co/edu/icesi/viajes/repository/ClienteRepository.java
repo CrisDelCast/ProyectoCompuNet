@@ -24,7 +24,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	    public Cliente consultarClientePorCorreoElectronicoIgnoreCase(String correo);
 	 // 4 
 	 @Query("select tp from Cliente tp where tp.numeroIdentificacion like %?1%")
-		public List<Cliente> consultarPorNumeroIdentificacion(String numeroIdentificacion);
+		public Cliente consultarPorNumeroIdentificacion(String numeroIdentificacion);
 	 //5
 	 @Query("select tp from Cliente tp where lower(tp.nombre) like lower(concat('%', ?1,'%'))")
 		public List<Cliente> consultarPorNombre(String nombre);
