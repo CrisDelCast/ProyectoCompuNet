@@ -19,7 +19,7 @@ public class PlanDTO {
     private String usuModificador;
     private String estado;
     private Integer idClie;
-    private Integer idDestinos;
+    private Integer[] idDestinos;
     
     // Constructor, getters y setters
     
@@ -28,7 +28,7 @@ public class PlanDTO {
 
     public PlanDTO(String codigo, String descripcionSolicitud, String nombre, Integer cantidadPersonas,
                    Date fechaSolicitud, Date fechaInicioViaje, Date fechaFinViaje, Double valorTotal,
-                   String usuCreador, String estado, Integer idClie, Integer idDestinos) {
+                   String usuCreador, String estado, Integer idClie, Integer[] idDestinos) {
         this.codigo = codigo;
         this.descripcionSolicitud = descripcionSolicitud;
         this.nombre = nombre;
@@ -42,7 +42,7 @@ public class PlanDTO {
         this.idClie = idClie;
         this.idDestinos = idDestinos;
     }
-    public PlanDTO(String codigo, String nombre, Integer cantidadPersonas, Date fechaInicioViaje, Date fechaFinViaje, Double valorTotal,Integer idDestinos) {
+    public PlanDTO(String codigo, String nombre, Integer cantidadPersonas, Date fechaInicioViaje, Date fechaFinViaje, Double valorTotal,Integer[] idDestinos) {
 		 this.codigo = codigo;
 		 this.nombre = nombre;
 		 this.cantidadPersonas = cantidadPersonas;
@@ -175,11 +175,11 @@ public class PlanDTO {
         this.idClie = idClie;
     }
 
-    public Integer getIdDestinos() {
+    public Integer[] getIdDestinos() {
         return idDestinos;
     }
 
-    public void setIdDestinos(Integer idDestinos) {
+    public void setIdDestinos(Integer[] idDestinos) {
         this.idDestinos = idDestinos;
     }
 }

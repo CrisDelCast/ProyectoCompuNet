@@ -42,7 +42,7 @@ public class Plan {
     @Column(name="id_clie", nullable = false)
     private Integer idClie;
     @Column(name="id_destinos", nullable = false)
-    private Integer id_destinos;
+    private Integer[] id_destinos;
     //geters
 	public Integer getIdPlan() {
 		return idPlan;
@@ -134,11 +134,11 @@ public class Plan {
 	public void setIdClie(Integer idClie) {
 		this.idClie = idClie;
 	}
-	public Integer getIdDestinos() {
+	public Integer[] getIdDestinos() {
 		return id_destinos;
 	}
-	public void setIdDestinos(Integer id_destinos) {
-		this.id_destinos = id_destinos;
+	public void setIdDestinos(Integer[] integers) {
+		this.id_destinos = integers;
 	}
     
     
