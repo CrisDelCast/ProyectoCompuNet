@@ -1,7 +1,9 @@
 package co.edu.icesi.viajes.controller;
 
+import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.domain.Plan;
+import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.DestinoDTO;
 import co.edu.icesi.viajes.mapper.DestinoMapper;
 import co.edu.icesi.viajes.service.DestinoService;
@@ -52,6 +54,15 @@ public class DestinoRestController {
     public void updateDestino(@PathVariable Integer id, @RequestBody DestinoDTO destinoDto) throws Exception {
         destinoDto.setIdDest(id);
         destinoService.update(DestinoMapper.destinoDtoToDestino(destinoDto));
+    }
+    
+    @GetMapping("/{id}")
+    public void getDestino(@PathVariable String id, @RequestBody DestinoDTO destinoDto) throws Exception {
+        Destino destino = destinoService.consultarDestinoPorCodigo(id);
+        //Destino destinoDto = new DestinoDTO()
+        
+        //return ResponseEntity.ok(destino);
+        //destinoService.update(DestinoMapper.destinoDtoToDestino(destinoDto));
     }
     
     //@DeleteMapping("/{id}")
