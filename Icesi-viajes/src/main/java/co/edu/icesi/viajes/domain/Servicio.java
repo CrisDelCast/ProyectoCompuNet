@@ -10,8 +10,8 @@ import jakarta.persistence.Table;
 public class Servicio {
 
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "idServicio")
+    private Integer idServicio;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -28,11 +28,11 @@ public class Servicio {
     // Getters y Setters
 
     public Integer getId() {
-        return id;
+        return idServicio;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idServicio = id;
     }
 
     public String getNombre() {

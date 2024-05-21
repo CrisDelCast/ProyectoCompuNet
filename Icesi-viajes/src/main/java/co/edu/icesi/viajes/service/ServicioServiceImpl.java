@@ -25,8 +25,8 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public Optional<Servicio> findById(Integer id) {
-        return servicioRepository.findById(id);
+    public Optional<Servicio> findById(Integer idServicio) {
+        return servicioRepository.findById(idServicio);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public void deleteById(Integer id) throws Exception {
-        servicioRepository.deleteById(id);
+    public void deleteById(Integer idServicio) throws Exception {
+        servicioRepository.deleteById(idServicio);
     }
 
     @Override

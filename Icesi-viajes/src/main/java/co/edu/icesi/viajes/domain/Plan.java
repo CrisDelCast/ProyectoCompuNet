@@ -43,7 +43,15 @@ public class Plan {
     private Integer idClie;
     @Column(name="id_destinos", nullable = false)
     private Integer[] id_destinos;
-    //geters
+    @Column(name="idServicio", nullable = false)
+    private Integer[] idServicio;
+    public Integer[] getIdServicio() {
+		return idServicio;
+	}
+	public void setIdServicio(Integer[] idServicio) {
+		this.idServicio = idServicio;
+	}
+	//geters
 	public Integer getIdPlan() {
 		return idPlan;
 	}

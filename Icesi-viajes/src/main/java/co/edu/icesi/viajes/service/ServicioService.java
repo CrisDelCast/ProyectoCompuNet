@@ -13,7 +13,7 @@ public interface ServicioService {
 	
 	 List<Servicio> findAll();
 
-	    Optional<Servicio> findById(Integer id);
+	    Optional<Servicio> findById(Integer idServicio);
 
 	    Servicio save(Servicio entity) throws Exception;
 
