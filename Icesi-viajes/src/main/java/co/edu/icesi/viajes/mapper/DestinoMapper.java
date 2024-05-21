@@ -4,6 +4,7 @@ import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.dto.DestinoDTO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DestinoMapper {
@@ -35,21 +36,22 @@ public class DestinoMapper {
         if (destinoDto == null) {
             return null;
         }
+        Date fechaActual = new Date();
         
         Destino destino = new Destino();
-        destino.setIdDest(destinoDto.getIdDest());
         destino.setCodigo(destinoDto.getCodigo());
         destino.setNombre(destinoDto.getNombre());
         destino.setDescripcion(destinoDto.getDescripcion());
         destino.setTierra(destinoDto.getTierra());
         destino.setAire(destinoDto.getAire());
         destino.setMar(destinoDto.getMar());
-        destino.setFechaCreacion(destinoDto.getFechaCreacion());
-        destino.setFechaModificacion(destinoDto.getFechaModificacion());
-        destino.setUsuCreador(destinoDto.getUsuCreador());
-        destino.setUsuModificador(destinoDto.getUsuModificador());
+        destino.setFechaCreacion(fechaActual);
+        destino.setFechaModificacion(fechaActual);
+        destino.setUsuCreador("");
+        destino.setUsuModificador("");
         destino.setEstado(destinoDto.getEstado());
-        destino.setIdTide(destinoDto.getIdTide());
+        destino.setIdTide(1);
+        destino.setIdDestinationCategoy(1);
         
         return destino;
     }

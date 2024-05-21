@@ -21,8 +21,7 @@ public class DestinoDTO {
     // Constructores, getters y setters
     
     // Constructor vacío
-    public void DestinoDto() {
-    }
+    
     
     // Constructor con todos los campos
     public void DestinoDto(Integer idDest, String codigo, String nombre, String descripcion, char tierra,
@@ -42,8 +41,23 @@ public class DestinoDTO {
         this.estado = estado;
         this.idTide = idTide;
     }
+    public DestinoDTO(String codigo, String nombre, String descripcion,  char tierra,
+         char aire, char mar, String estado) {
+		 this.codigo = codigo;
+		 this.nombre = nombre;
+		 this.descripcion = descripcion;
+		 this.tierra = tierra;
+	     this.aire = aire;
+	     this.mar = mar;
+	     this.estado = estado;
+		 
+   }
     
-    // Getters y setters
+    public DestinoDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	// Getters y setters
     public Integer getIdDest() {
         return idDest;
     }
