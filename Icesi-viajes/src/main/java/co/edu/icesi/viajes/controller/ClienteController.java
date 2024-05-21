@@ -39,7 +39,7 @@ public class ClienteController {
 
 
     
-    @PutMapping("/{idClie}")
+    @PutMapping("/ac{idClie}")
     public ResponseEntity<ClienteDTO> actualizarCliente(@PathVariable Integer id, @RequestBody ClienteDTO clienteDTO) {
         try {
 
@@ -60,6 +60,18 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    
+    @GetMapping("/{idClie}")
+    public ResponseEntity<Cliente> getCliente(@PathVariable String idClie) {
+        
+        	Cliente cliente = clienteService.consultarPorNumeroIdentificacion(idClie);
+            ClienteDTO clienteGuardadoDTO = new ClienteDTO(cliente.getIdClie(), cliente.getNombre(), cliente.getEstado(), cliente.getFechaCreacion());
+          
+            return ResponseEntity.ok(cliente);
+        
+           
+        }
+    
 
 
 }

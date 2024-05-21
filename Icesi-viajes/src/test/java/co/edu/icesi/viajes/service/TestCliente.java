@@ -48,12 +48,12 @@ class TestCliente {
 	    void consultarPorNumeroIdentificacion(){
 		 
 		 
-		 List<Cliente> lstCliente = cliente.consultarPorNumeroIdentificacion("100293");
+		 Cliente lstCliente = cliente.consultarPorNumeroIdentificacion("100293");
 
 	       
-		 	for(Cliente cliente: lstCliente){
-	            System.out.println(cliente.getCorreo() +"-"+cliente.getNombre());
-	        }
+		 	
+	            System.out.println(lstCliente.getCorreo() +"-"+lstCliente.getNombre());
+	        
 	        
 	 	}
 	 @Test
