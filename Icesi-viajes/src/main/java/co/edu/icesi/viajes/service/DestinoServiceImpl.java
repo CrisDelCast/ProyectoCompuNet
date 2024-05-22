@@ -1,7 +1,12 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.Destino;
+import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.DestinoDTO;
+import co.edu.icesi.viajes.dto.PlanDTO;
+import co.edu.icesi.viajes.mapper.DestinoMapper;
+import co.edu.icesi.viajes.mapper.PlanMapper;
 import co.edu.icesi.viajes.repository.DestinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -79,6 +84,15 @@ public class DestinoServiceImpl implements DestinoService{
 	}
 	public List<Destino> consultByCategory(Integer idDestinationCategory) {
 		return destinoRepository.consultByCategory(idDestinationCategory);
+	}
+
+	@Override
+	public Destino crearDestino(DestinoDTO destinoDTO) {
+		Destino destino = DestinoMapper.destinoDtoToDestino(destinoDTO);
+        // Resto de asignaciones
+        // Luego, podrías guardar el plan utilizando el repositorio
+        return destinoRepository.save(destino);
+		
 	}
 	
 }

@@ -13,7 +13,6 @@ import org.mapstruct.factory.Mappers;
 public class PlanMapper {
     
     
-    private static int contadorIdPlan = 0;
 
 
 	public static PlanDTO planToPlanDto(Plan plan) {
@@ -48,8 +47,7 @@ public class PlanMapper {
         }
         Date fechaActual = new Date();
         Plan plan = new Plan();
-        contadorIdPlan++;
-        plan.setIdPlan(contadorIdPlan);
+        
         plan.setCodigo(planDto.getCodigo());
         plan.setDescripcionSolicitud("");
         plan.setNombre(planDto.getNombre());
