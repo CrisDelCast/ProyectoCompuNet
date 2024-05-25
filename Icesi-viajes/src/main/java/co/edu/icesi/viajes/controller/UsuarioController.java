@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.controller;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
+import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
 import co.edu.icesi.viajes.service.UsuarioService;
 
 import java.util.ArrayList;
@@ -42,12 +43,15 @@ public class UsuarioController {
     public ResponseEntity<?> autenticarUsuario(@RequestBody CredencialesDTO credenciales) {
         Usuario usuario = usuarioService.autenticarUsuario(credenciales.getLogin(), credenciales.getPassword());
         if (usuario != null) {
-            return ResponseEntity.ok(usuario);
+            UsuarioResponseDTO usuarioResponseDTO = new UsuarioResponseDTO(
+                usuario.getIdUsua(), usuario.getLogin(), usuario.getNombre(), usuario.getRol().getNombre()
+            );
+            return ResponseEntity.ok(usuarioResponseDTO);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
-    
+
     @GetMapping("/usuariostotal")
     public ResponseEntity<List<UsuarioDTO>> obtenerTodosLosUsuarios() {
         List<Usuario> usuarios = usuarioService.findAll();

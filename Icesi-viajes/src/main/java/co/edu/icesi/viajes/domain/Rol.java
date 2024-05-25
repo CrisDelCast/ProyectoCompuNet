@@ -1,63 +1,44 @@
 package co.edu.icesi.viajes.domain;
-import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ColumnResult;
-import jakarta.persistence.ConstructorResult;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedNativeQueries;
-import jakarta.persistence.NamedNativeQuery;
-import jakarta.persistence.SqlResultSetMapping;
-import jakarta.persistence.SqlResultSetMappings;
-import jakarta.persistence.Table;
-
-
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="roles")
-public class Rol implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_Rol")
-    private Integer idRol;
-    @Column(name="codigo",nullable = false)
-    private String codigo;
-    @Column(name="nombre")
-    private String nombre; 
-    @Column(name="estado")
-    private String estado;
-    
-    
-	public Integer getIdRol() {
-		return idRol;
-	}
-	public void setIdRol(Integer idRol) {
-		this.idRol = idRol;
-	}
-	public String getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-    	
+@Table(name = "roles")
+public class Rol {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }

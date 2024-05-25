@@ -72,23 +72,21 @@ public class RolServiceImpl implements RolService {
 	
 	    
 
-	    public Rol crearRol(Integer idRol, String codigo, String nombre, String estado) {
+	    public Rol crearRol(Long idRol, String nombre) {
 	        Rol rol = new Rol();
-	        rol.setIdRol(idRol);
-	        rol.setCodigo(codigo);
+	        rol.setId(idRol);
 	        rol.setNombre(nombre);
-	        rol.setEstado(estado);
+
 
 	        return rolRepository.save(rol);
 	    }
 
-	    public Rol modificarRol(Integer idRol, String codigo, String nombre, String estado) throws Exception {
+	    public Rol modificarRol(Integer idRol , String nombre) throws Exception {
 	        Optional<Rol> optionalRol = rolRepository.findById(idRol);
 	        if (optionalRol.isPresent()) {
 	            Rol rol = optionalRol.get();
-	            rol.setCodigo(codigo);
 	            rol.setNombre(nombre);
-	            rol.setEstado(estado);
+
 
 	            return rolRepository.save(rol);
 	        } else {

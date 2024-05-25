@@ -1,6 +1,7 @@
 package co.edu.icesi.viajes.dto;
 
 
+    
 public class UsuarioDTO {
     private Integer id;
     private String nombre;
@@ -15,7 +16,8 @@ public class UsuarioDTO {
         this.estado = estado;
         this.fechaVinculacion = fechaVinculacion;
     }
-    
+
+
 
     public UsuarioDTO(Integer id, String nombre, String estado) {
 		super();
