@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.TipoDestinoDTO;
@@ -87,6 +88,7 @@ public class Cliente implements Serializable{
     @NotNull
     private String sexo;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_nacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull
@@ -115,9 +117,18 @@ public class Cliente implements Serializable{
     @Column(name = "id_tiid", nullable = false)
     @NotNull
     private Integer idTiid;
+    
+    @Column(name = "foto_perfil_url" , nullable = true)
+    private String foto_perfil_url;
 
     
     
+	public String getFoto_perfil_url() {
+		return foto_perfil_url;
+	}
+	public void setFoto_perfil_url(String foto_perfil_url) {
+		this.foto_perfil_url = foto_perfil_url;
+	}
 	public Integer getIdClie() {
 		return idClie;
 	}

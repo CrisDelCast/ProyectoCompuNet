@@ -31,6 +31,15 @@ public class ClienteDTO implements Serializable {
         this.nombre = nombre;
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
+
+    }
+    public ClienteDTO(Integer idClie, String nombre, String estado, Date fechaCreacion , String foto_perfil_url) {
+    	super();
+        this.idClie = idClie;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.fechaCreacion = fechaCreacion;
+        this.foto_perfil_url = foto_perfil_url;
     }
     
     
@@ -83,6 +92,17 @@ public class ClienteDTO implements Serializable {
 	    private String usuModificador;
 	    private String estado;
 	    private Integer idTiid;
+	    private String foto_perfil_url;
+	    
+	    
+	    
+	    
+		public String getFoto_perfil_url() {
+			return foto_perfil_url;
+		}
+		public void setFoto_perfil_url(String foto_perfil_url) {
+			this.foto_perfil_url = foto_perfil_url;
+		}
 		public Integer getIdClie() {
 			return idClie;
 		}
