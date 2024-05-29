@@ -4,15 +4,21 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQueries;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.SqlResultSetMappings;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.antlr.v4.runtime.misc.NotNull;
 
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.TipoDestinoDTO;
@@ -48,43 +54,70 @@ import co.edu.icesi.viajes.dto.TipoDestinoDTO;
 @Entity
 @Table(name="cliente")
 public class Cliente implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-    @Column(name="id_clie")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_clie")
     private Integer idClie;
-    @Column(name="numero_identificacion", nullable = false)
+
+    @Column(name = "numero_identificacion", nullable = false)
+    @NotNull
     private String numeroIdentificacion;
-    @Column(name="primer_apellido", nullable = false)
+
+    @Column(name = "primer_apellido", nullable = false)
+    @NotNull
     private String primerApellido;
-    @Column(name="segundo_apellido")
+
+    @Column(name = "segundo_apellido")
     private String segundoApellido;
-    @Column(name="nombre", nullable = false)
+
+    @Column(name = "nombre", nullable = false)
+    @NotNull
     private String nombre;
-    @Column(name="telefono1")
+
+    @Column(name = "telefono1")
     private String telefono1;
-    @Column(name="telefono2")
+
+    @Column(name = "telefono2")
     private String telefono2;
-    @Column(name="correo")
+
+    @Column(name = "correo")
     private String correo;
-    @Column(name="sexo", nullable = false)
+
+    @Column(name = "sexo", nullable = false)
+    @NotNull
     private String sexo;
-    @Column(name="fecha_nacimiento", nullable = false)
+
+    @Column(name = "fecha_nacimiento", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @NotNull
     private Date fechaNacimiento;
-    @Column(name="fecha_creacion", nullable = false)
+
+    @Column(name = "fecha_creacion", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
     private Date fechaCreacion;
-    @Column(name="fecha_modificacion")
+
+    @Column(name = "fecha_modificacion")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
-    @Column(name="usu_creador", nullable = false)
+
+    @Column(name = "usu_creador", nullable = false)
+    @NotNull
     private String usuCreador;
-    @Column(name="usu_modificador")
+
+    @Column(name = "usu_modificador")
     private String usuModificador;
-    @Column(name="estado", nullable = false)
+
+    @Column(name = "estado", nullable = false)
+    @NotNull
     private String estado;
-    @Column(name="id_tiid", nullable = false)
+
+    @Column(name = "id_tiid", nullable = false)
+    @NotNull
     private Integer idTiid;
+
+    
+    
 	public Integer getIdClie() {
 		return idClie;
 	}

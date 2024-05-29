@@ -6,6 +6,7 @@ import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
 import co.edu.icesi.viajes.service.UsuarioService;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -57,7 +59,7 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.findAll();
         List<UsuarioDTO> usuariosDTO = new ArrayList<>();
         for (Usuario usuario : usuarios) {
-            UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion().toString());
+            UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
             usuariosDTO.add(usuarioDTO);
         }
         return ResponseEntity.ok(usuariosDTO);
@@ -72,6 +74,17 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    
+    @PostMapping("/crear")
+    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario, @RequestParam Integer rolId) {
+        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario, rolId);
+        return ResponseEntity.ok(nuevoUsuario);
+    }
+    
+    
+    
+    
+    
 
 
 }

@@ -32,9 +32,41 @@ public class ClienteDTO implements Serializable {
         this.estado = estado;
         this.fechaCreacion = fechaCreacion;
     }
+    
+    
 
 	
 	
+		public ClienteDTO() {
+		super();
+	}
+		public ClienteDTO(Integer idClie, String numeroIdentificacion, String primerApellido, String segundoApellido,
+			String nombre, String telefono1, String telefono2, String correo, String sexo, Date fechaNacimiento,
+			Date fechaCreacion, Date fechaModificacion, String usuCreador, String usuModificador, String estado,
+			Integer idTiid) {
+		super();
+		this.idClie = idClie;
+		this.numeroIdentificacion = numeroIdentificacion;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.nombre = nombre;
+		this.telefono1 = telefono1;
+		this.telefono2 = telefono2;
+		this.correo = correo;
+		this.sexo = sexo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaModificacion = fechaModificacion;
+		this.usuCreador = usuCreador;
+		this.usuModificador = usuModificador;
+		this.estado = estado;
+		this.idTiid = idTiid;
+	}
+
+
+
+
+
 		private Integer idClie;
 	    private String numeroIdentificacion;
 	    private String primerApellido;

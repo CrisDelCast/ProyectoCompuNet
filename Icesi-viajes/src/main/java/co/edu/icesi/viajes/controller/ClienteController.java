@@ -10,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,15 +64,46 @@ public class ClienteController {
     }
     
     @GetMapping("/{idClie}")
-    public ResponseEntity<Cliente> getCliente(@PathVariable String idClie) {
-        
-        	Cliente cliente = clienteService.consultarPorNumeroIdentificacion(idClie);
-            ClienteDTO clienteGuardadoDTO = new ClienteDTO(cliente.getIdClie(), cliente.getNombre(), cliente.getEstado(), cliente.getFechaCreacion());
-          
-            return ResponseEntity.ok(cliente);
-        
-           
+    public ResponseEntity<ClienteDTO> getCliente(@PathVariable String idClie) {
+        Cliente cliente = clienteService.consultarPorId(idClie);
+
+        if (cliente == null) {
+            return ResponseEntity.notFound().build();
         }
+        ClienteDTO clienteDTO = new ClienteDTO(cliente.getIdClie(), cliente.getNombre(), cliente.getEstado(), cliente.getFechaCreacion());
+        return ResponseEntity.ok(clienteDTO);
+    }
+
+    
+    @PostMapping("/crearClientes")
+    public ResponseEntity<String> crearCliente(@RequestBody ClienteDTO clienteDTO) {
+        try {
+            Cliente nuevoCliente = new Cliente();
+            nuevoCliente.setNumeroIdentificacion(clienteDTO.getNumeroIdentificacion());
+            nuevoCliente.setPrimerApellido(clienteDTO.getPrimerApellido());
+            nuevoCliente.setSegundoApellido(clienteDTO.getSegundoApellido());
+            nuevoCliente.setNombre(clienteDTO.getNombre());
+            nuevoCliente.setTelefono1(clienteDTO.getTelefono1());
+            nuevoCliente.setTelefono2(clienteDTO.getTelefono2());
+            nuevoCliente.setCorreo(clienteDTO.getCorreo());
+            nuevoCliente.setSexo(clienteDTO.getSexo());
+            nuevoCliente.setFechaNacimiento(clienteDTO.getFechaNacimiento());
+            nuevoCliente.setFechaCreacion(new Date()); 
+            nuevoCliente.setUsuCreador("Admin");
+            nuevoCliente.setEstado("A"); 
+            nuevoCliente.setIdTiid(clienteDTO.getIdTiid());
+
+            Cliente clienteGuardado = clienteService.save(nuevoCliente);
+            return ResponseEntity.ok("Cliente creado con éxito: " + clienteGuardado.getIdClie());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error al crear el cliente: " + e.getMessage());
+        }
+    }
+
+
+
     
 
 

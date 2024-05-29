@@ -4,6 +4,8 @@ import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.repository.ClienteRepository;
+import jakarta.persistence.NonUniqueResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Scope("singleton")
@@ -118,12 +121,24 @@ public class ClienteServiceImpl implements ClienteService{
 		return null;
 	}
 
-	@Override
-	public Cliente consultarPorNumeroIdentificacion(String string) {
-		// TODO Auto-generated method stub
-		return clienteRepository.consultarPorNumeroIdentificacion(string);
-	}
+    public Cliente consultarPorNumeroIdentificacion(String numeroIdentificacion) {
+        List<Cliente> clientes = (List<Cliente>) clienteRepository.consultarPorNumeroIdentificacion(numeroIdentificacion);
 
+        if (clientes.size() == 1) {
+            return clientes.get(0);
+        } else if (clientes.isEmpty()) {
+            throw new NoSuchElementException("No se encontró un cliente con el número de identificación proporcionado");
+        } else {
+            throw new NonUniqueResultException("Se encontraron múltiples clientes con el mismo número de identificación");
+        }
+    }
+
+    
+    @Override
+    public Cliente consultarPorId(String idClie) {
+        return clienteRepository.consultarPorId(idClie);
+    }
+    
 	@Override
 	public List<Cliente> obtenerTodosLosCientes() {
 		// TODO Auto-generated method stub

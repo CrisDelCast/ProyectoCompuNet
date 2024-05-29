@@ -25,16 +25,7 @@ class TestUsuario {
         log.info("Ejecutando test()...");
     }
      
-    @Test
-    void testCrearUsuario(){
-        log.info("Ejecutando testCrearUsuario()...");
-        Date fechaInicio = new Date("2021/10/15");
-        Date fechaFin = new Date("2021/10/20");
-        Usuario usuarioCreado = usuario.crearUsuario(1234, "log", "log", "cris", "1234", fechaInicio, fechaFin, "cris", "cris", "A");
-        assertNotNull(usuarioCreado);
-        assertEquals(1234, usuarioCreado.getIdUsua());
-        assertEquals("cris", usuarioCreado.getNombre());
-    }
+
     
     @Test
     void testModificarUsuario() throws Exception {

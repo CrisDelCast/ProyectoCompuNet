@@ -1,6 +1,8 @@
 package co.edu.icesi.viajes.service;
 
+import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.repository.RolRepository;
 import co.edu.icesi.viajes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -57,19 +59,24 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Long count() {
         return usuarioRepository.count();
     }
+    
+    
+    @Autowired
+    private RolRepository rolRepository;
+
     @Override
-    public Usuario crearUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaCreacion,Date fechaModificacion, String usuCreador, String usuModificador, String estado) {
-        Usuario usuario = new Usuario();
-        usuario.setIdUsua(idUsua);
-        usuario.setLogin(login);
-        usuario.setPassword(password);
-        usuario.setNombre(nombre);
-        usuario.setIdentificacion(identificacion);
-        usuario.setFechaCreacion(fechaCreacion);
-        usuario.setUsuCreador(usuCreador);
-        usuario.setEstado(estado);
-        return usuarioRepository.save(usuario);
+    public Usuario crearUsuario(Usuario usuario, Integer rolId) {
+        Optional<Rol> rolOptional = rolRepository.findById(rolId);
+        if (rolOptional.isPresent()) {
+            usuario.setFechaCreacion(new Date());
+            usuario.setEstado("A");
+            usuario.getRoles().add(rolOptional.get());
+            return usuarioRepository.save(usuario);
+        } else {
+            throw new IllegalArgumentException("El rol especificado no existe");
+        }
     }
+
   
     @Override
     public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception {

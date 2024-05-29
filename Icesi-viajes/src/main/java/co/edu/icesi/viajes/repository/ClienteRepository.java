@@ -56,6 +56,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	@Query("UPDATE Cliente u SET u.nombre = :nombre, u.estado = :estado WHERE u.idClie = :id")
 	 void updateUsuario(@Param("id") Integer id, @Param("nombre") String nombre, @Param("estado") String estado);
 	    
+	@Query("SELECT c FROM Cliente c WHERE c.idClie = :idClie")
+	public Cliente consultarPorId(@Param("idClie") String idClie);
+
 	 
 	
 }
