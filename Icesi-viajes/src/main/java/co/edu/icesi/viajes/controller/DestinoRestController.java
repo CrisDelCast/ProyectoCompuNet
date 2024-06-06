@@ -57,17 +57,25 @@ public class DestinoRestController {
     }
     
     @GetMapping("/{id}")
-    public void getDestino(@PathVariable String id, @RequestBody DestinoDTO destinoDto) throws Exception {
-        Destino destino = destinoService.consultarDestinoPorCodigo(id);
-        //Destino destinoDto = new DestinoDTO()
-        
-        //return ResponseEntity.ok(destino);
-        //destinoService.update(DestinoMapper.destinoDtoToDestino(destinoDto));
+    public ResponseEntity<Destino> getDestino(@PathVariable String id) {
+        try {
+            Destino destino = destinoService.consultarDestinoPorCodigo(id);
+            return ResponseEntity.ok(destino);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    
+    @PutMapping("/editar")
+    public ResponseEntity<Destino> editarDestino(@RequestBody DestinoDTO destinoDTO) {
+        try {
+            Destino destinoActualizado = destinoService.editarDestino(destinoDTO);
+            return ResponseEntity.ok(destinoActualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
     
-    //@DeleteMapping("/{id}")
-    // public void deleteDestino(@PathVariable String id) {
-    // Destino Dest = destinoService.consultarDestinoPorCodigoEstado(id);
-     // destinoService.delete(id);
-    //}
+    
 }
