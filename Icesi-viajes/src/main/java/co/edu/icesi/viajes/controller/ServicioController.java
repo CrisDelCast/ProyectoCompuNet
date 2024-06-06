@@ -2,11 +2,14 @@ package co.edu.icesi.viajes.controller;
 
 import java.util.List;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,4 +53,25 @@ public class ServicioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado: " + e.getMessage());
         }
     }
+    
+    @GetMapping("/detalles/{id}")
+    public ResponseEntity<?> obtenerDetallesServicio(@PathVariable Integer id) {
+        Optional<Servicio> servicio = servicioService.findById(id);
+        if (servicio.isPresent()) {
+            return ResponseEntity.ok(servicio.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado");
+        }
+    }
+    /**
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminarServicio(@PathVariable Long id) {
+        try {
+            servicioService.deleteServicio(id);
+            return ResponseEntity.ok().body("Servicio eliminado con éxito");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado: " + e.getMessage());
+        }
+    }
+    **/
 }

@@ -13,7 +13,7 @@ public interface ServicioService {
 
 	 List<Servicio> findAll();
 
-	    Optional<Servicio> findById(Integer idServicio);
+	    Optional<Servicio> findById(Integer id);
 
 	    Servicio save(Servicio entity) throws Exception;
 
@@ -30,7 +30,6 @@ public interface ServicioService {
 	    ServicioDTO createServicio(ServicioDTO servicioDto) throws Exception;
 
 	    ServicioDTO editServicio(ServicioDTO servicioDto) throws Exception;
-
 
 
 

@@ -24,9 +24,9 @@ public class ServicioServiceImpl implements ServicioService {
         return servicioRepository.findAll();
     }
 
-    @Override
-    public Optional<Servicio> findById(Integer idServicio) {
-        return servicioRepository.findById(idServicio);
+    
+    public Optional<Servicio> findById(Integer id) {
+        return servicioRepository.findById(id);
     }
 
     @Override
@@ -88,6 +88,8 @@ public class ServicioServiceImpl implements ServicioService {
             throw new Exception("Servicio no encontrado");
         }
     }	
+    
+
     
 
 }
