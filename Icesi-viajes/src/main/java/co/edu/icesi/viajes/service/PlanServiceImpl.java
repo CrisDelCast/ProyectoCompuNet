@@ -28,7 +28,7 @@ public class PlanServiceImpl implements PlanService{
     public Optional<Plan> findById(Integer id) {
         return planRepository.findById(id);
     }
-
+ 
     @Override
     public Plan save(Plan entity) throws Exception {
         return planRepository.save(entity);
@@ -65,6 +65,8 @@ public class PlanServiceImpl implements PlanService{
         // Luego, podrías guardar el plan utilizando el repositorio
         return planRepository.save(plan);
     }
+    
+    
 	
 
 	
