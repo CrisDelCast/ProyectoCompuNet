@@ -88,10 +88,9 @@ public class Cliente implements Serializable{
     @NotNull
     private String sexo;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "fecha_nacimiento", nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
-    @NotNull
+    @Column(name = "fecha_nacimiento", nullable = true)
     private Date fechaNacimiento;
 
     @Column(name = "fecha_creacion", nullable = false)

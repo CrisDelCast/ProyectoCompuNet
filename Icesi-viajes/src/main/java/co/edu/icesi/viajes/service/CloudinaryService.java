@@ -23,4 +23,5 @@ public class CloudinaryService {
         Map uploadResult = cloudinary.uploader().upload(foto.getBytes(), ObjectUtils.emptyMap());
         return (String) uploadResult.get("url");
     }
+
 }

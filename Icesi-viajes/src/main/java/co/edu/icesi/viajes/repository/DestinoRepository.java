@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface DestinoRepository extends JpaRepository<Destino, Integer> {
 	//11
 	@Query("select tp from Destino tp where tp.codigo = ?1 ")
-	public Destino consultarDestinoPorCodigo(String codigo);
+	public Destino consultarDestinoPorCodigo(Long id);
 	//12
 
 	@Query("select tp from Destino tp where tp.codigo = ?1 and tp.estado = 'A'")

@@ -17,13 +17,20 @@ public class DestinoDTO {
     private String usuModificador;
     private String estado;
     private Integer idTide;
-    
+    private String fotoUrl;
+    private Integer idDestinationCategory;
     // Constructores, getters y setters
     
     // Constructor vacío
     
     
-    // Constructor con todos los campos
+    public Integer getIdDestinationCategory() {
+		return idDestinationCategory;
+	}
+	public void setIdDestinationCategory(Integer idDestinationCategory) {
+		this.idDestinationCategory = idDestinationCategory;
+	}
+	// Constructor con todos los campos
     public void DestinoDto(Integer idDest, String codigo, String nombre, String descripcion, char tierra,
                       char aire, char mar, Date fechaCreacion, Date fechaModificacion,
                       String usuCreador, String usuModificador, String estado, Integer idTide) {
@@ -53,7 +60,13 @@ public class DestinoDTO {
 		 
    }
     
-    public DestinoDTO() {
+    public String getFotoUrl() {
+		return fotoUrl;
+	}
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
+	public DestinoDTO() {
 		// TODO Auto-generated constructor stub
 	}
 

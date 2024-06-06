@@ -9,13 +9,13 @@ import co.edu.icesi.viajes.mapper.PlanMapper;
 import java.util.List;
 
 public interface DestinoService extends GenericService<Destino,Integer>{
-	public Destino consultarDestinoPorCodigo(String codigo);
+
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino);
 	public List<Destino> consultarDestinosActivos();
 	public List<Destino> getAllDestinos();
 	public List<Destino> consultByCategory(Integer idDestinationCategory);
 	public Destino crearDestino(DestinoDTO destinoDTO);
-		
+	DestinoDTO getDestinoById(Long id);
 
 
 

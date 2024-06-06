@@ -3,7 +3,7 @@ package co.edu.icesi.viajes.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "plan_servicio")
+@Table(name = "planservicio")
 public class PlanServicio {
 
     @Id
@@ -14,7 +14,7 @@ public class PlanServicio {
     @Column(name = "id_plan", nullable = false)
     private Integer idPlan;
 
-    @Column(name = "id_servicio", nullable = false)
+    @Column(name = "idServicio", nullable = false)
     private Integer idServicio;
 
     // Getters y Setters

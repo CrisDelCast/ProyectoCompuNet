@@ -11,13 +11,13 @@ public class Servicio {
 
     @Id
     @Column(name = "id")
-    private Integer id;
-
+    private Integer idServicio;
+    
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "id_tipo_servicio", nullable = false)
-    private Integer idTipoServicio;
+    private Integer id_tipo_servicio;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -28,11 +28,11 @@ public class Servicio {
     // Getters y Setters
 
     public Integer getId() {
-        return id;
+        return idServicio;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idServicio = id;
     }
 
     public String getNombre() {
@@ -44,11 +44,11 @@ public class Servicio {
     }
 
     public Integer getIdTipoServicio() {
-        return idTipoServicio;
+        return id_tipo_servicio;
     }
 
-    public void setIdTipoServicio(Integer idTipoServicio) {
-        this.idTipoServicio = idTipoServicio;
+    public void setIdTipoServicio(Integer id_tipo_servicio) {
+        this.id_tipo_servicio = id_tipo_servicio;
     }
 
     public String getDescripcion() {

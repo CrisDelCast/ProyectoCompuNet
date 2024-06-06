@@ -40,11 +40,28 @@ public class Destino {
     private String usuModificador;
     @Column(name="estado", nullable = false)
     private String estado;
-    @Column(name="id_tide", nullable = false)
+    @Column(name="id_tide", nullable = true)
     private Integer idTide;
-    @Column(name = "id_deca", nullable = false)
+    @Column(name = "id_deca", nullable = true)
     private Integer idDestinationCategory;
     
+    @Column(name = "foto_url", nullable = true)
+    private String fotoUrl;
+    
+    
+    
+	public Integer getIdDestinationCategory() {
+		return idDestinationCategory;
+	}
+	public void setIdDestinationCategory(Integer idDestinationCategory) {
+		this.idDestinationCategory = idDestinationCategory;
+	}
+	public String getFotoUrl() {
+		return fotoUrl;
+	}
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
 	public Integer getIdDest() {
 		
 		return idDest;

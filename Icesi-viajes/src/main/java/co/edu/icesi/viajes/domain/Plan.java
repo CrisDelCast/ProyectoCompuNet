@@ -5,9 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="plan")
@@ -46,6 +48,10 @@ public class Plan {
     private Integer idClie;
     @Column(name="id_destinos", nullable = false)
     private Integer[] id_destinos;
+    
+    @OneToMany(mappedBy = "plan")
+    private List<Reserva> reservas;
+    
     //geters
 	public Integer getIdPlan() {
 		return idPlan;

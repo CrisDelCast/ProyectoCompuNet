@@ -8,6 +8,8 @@ import co.edu.icesi.viajes.dto.PlanDTO;
 import co.edu.icesi.viajes.mapper.DestinoMapper;
 import co.edu.icesi.viajes.mapper.PlanMapper;
 import co.edu.icesi.viajes.repository.DestinoRepository;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -62,11 +64,7 @@ public class DestinoServiceImpl implements DestinoService{
         return destinoRepository.count();
     }
 
-	@Override
-	public Destino consultarDestinoPorCodigo(String codigo) {
-		
-		return destinoRepository.consultarDestinoPorCodigo(codigo);
-	}
+	
 
 	@Override
 	public List<Destino> consultarPorTipoDestino(String codigoTipoDestino) {
@@ -89,10 +87,44 @@ public class DestinoServiceImpl implements DestinoService{
 	@Override
 	public Destino crearDestino(DestinoDTO destinoDTO) {
 		Destino destino = DestinoMapper.destinoDtoToDestino(destinoDTO);
-        // Resto de asignaciones
-        // Luego, podrías guardar el plan utilizando el repositorio
         return destinoRepository.save(destino);
 		
 	}
+	
+	   @Transactional
+	    public void eliminarDestino(Integer id) throws Exception {
+	        if(destinoRepository.existsById(id)) {
+	            destinoRepository.deleteById(id);
+	        } else {
+	            throw new Exception("El destino con ID " + id + " no existe");
+	        }
+	    }
+	   
+	    @Override
+	    public DestinoDTO getDestinoById(Long id) {
+	        Destino destino = destinoRepository.consultarDestinoPorCodigo(id);
+	        return destino != null ? convertToDTO(destino) : null;
+	    }
+	    
+	    private DestinoDTO convertToDTO(Destino destino) {
+	        DestinoDTO destinoDTO = new DestinoDTO();
+	        destinoDTO.setIdDest(destino.getIdDest());
+	        destinoDTO.setCodigo(destino.getCodigo());
+	        destinoDTO.setNombre(destino.getNombre());
+	        destinoDTO.setDescripcion(destino.getDescripcion());
+	        destinoDTO.setTierra(destino.getTierra());
+	        destinoDTO.setAire(destino.getAire());
+	        destinoDTO.setMar(destino.getMar());
+	        destinoDTO.setFechaCreacion(destino.getFechaCreacion());
+	        destinoDTO.setFechaModificacion(destino.getFechaModificacion());
+	        destinoDTO.setUsuCreador(destino.getUsuCreador());
+	        destinoDTO.setUsuModificador(destino.getUsuModificador());
+	        destinoDTO.setEstado(destino.getEstado());
+	        destinoDTO.setIdTide(destino.getIdTide());
+	        destinoDTO.setIdDestinationCategory(destino.getIdDestinationCategory());
+	        destinoDTO.setFotoUrl(destino.getFotoUrl());
+	        return destinoDTO;
+	    }
+
 	
 }

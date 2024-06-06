@@ -50,10 +50,7 @@ public class ClienteServiceImpl implements ClienteService{
         clienteRepository.delete(entity);
     }
 
-    @Override
-    public void deleteById(Integer id) throws Exception {
-        clienteRepository.deleteById(id);
-    }
+
 
     @Override
     public void validate(Cliente entity) throws Exception {
@@ -163,6 +160,16 @@ public class ClienteServiceImpl implements ClienteService{
 		return null;
 	}
 
+	
+    @Override
+    public void deleteById(Integer id) throws Exception {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        if (clienteOptional.isPresent()) {
+            clienteRepository.deleteById(id);
+        } else {
+            throw new Exception("Cliente no encontrado con el ID: " + id);
+        }
+    }
 	
 
 	//@SuppressWarnings("deprecation")

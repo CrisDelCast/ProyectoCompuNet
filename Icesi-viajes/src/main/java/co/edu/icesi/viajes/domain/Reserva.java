@@ -1,9 +1,16 @@
 package co.edu.icesi.viajes.domain;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 import java.util.Date;
 
 @Entity
@@ -11,7 +18,9 @@ import java.util.Date;
 public class Reserva {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id",unique=true, nullable = false)
     private Integer id;
 
     @Column(name = "id_cliente", nullable = false)
@@ -38,16 +47,57 @@ public class Reserva {
     @Column(name = "estado", nullable = false)
     private String estado;
 
-    @Column(name = "id_agente", nullable = false)
+    @Column(name = "id_agente", nullable = true)
     private Integer idAgente;
+    
+    @Transient // Esta anotación indica que este campo no se mapeará a la base de datos
+    private Usuario agente;
+    
+    public Integer getId() {
+		return id;
+	}
+
+	public Usuario getAgente() {
+		return agente;
+	}
+
+	public void setAgente(Usuario agente) {
+		this.agente = agente;
+	}
+
+	@ManyToOne
+    @JoinColumn(name = "id_cliente", nullable = true, insertable = false, updatable = false) // Indicamos que no insertará ni actualizará esta columna directamente
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_plan", nullable = true, insertable = false, updatable = false) // Indicamos que no insertará ni actualizará esta columna directamente
+    private Plan plan;
 
     // Getters y Setters
 
-    public Integer getId() {
-        return id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setId(Integer id) {
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        if (cliente != null) {
+            this.idCliente = cliente.getIdClie(); // Establecemos el ID correspondiente
+        }
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+        if (plan != null) {
+            this.idPlan = plan.getIdPlan(); // Establecemos el ID correspondiente
+        }
+    }
+
+	public void setId(Integer id) {
         this.id = id;
     }
 
