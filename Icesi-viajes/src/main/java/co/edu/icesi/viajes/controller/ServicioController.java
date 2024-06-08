@@ -53,7 +53,7 @@ public class ServicioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado: " + e.getMessage());
         }
     }
-    
+    /**
     @GetMapping("/detalles/{id}")
     public ResponseEntity<?> obtenerDetallesServicio(@PathVariable Integer id) {
         Optional<Servicio> servicio = servicioService.findById(id);
