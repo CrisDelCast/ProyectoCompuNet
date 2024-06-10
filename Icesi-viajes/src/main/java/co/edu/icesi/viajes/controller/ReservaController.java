@@ -5,38 +5,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import co.edu.icesi.viajes.domain.Cliente;
+import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.domain.Reserva;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.ReservaDTO;
 import co.edu.icesi.viajes.service.ReservaService;
+import co.edu.icesi.viajes.service.ReservaServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservas")
+@RequestMapping("/api/reservas")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ReservaController {
-
-    private final ReservaService reservaService;
-
-    @Autowired
-    public ReservaController(ReservaService reservaService) {
-        this.reservaService = reservaService;
-    }
+	
+	@Autowired
+    private ReservaService reservaService;
 
     @PostMapping("/crear")
-    public Reserva crearReserva(@RequestBody ReservaDTO reservaRequest) {
-        Cliente cliente = reservaRequest.getCliente();
-        Plan plan = reservaRequest.getPlan();
-        Date fechaInicio = reservaRequest.getFechaInicio();
-        Date fechaFin = reservaRequest.getFechaFin();
-        int numeroPersonas = reservaRequest.getNumeroPersonas();
-        double precioTotal = reservaRequest.getPrecioTotal();
-        String estado = reservaRequest.getEstado();
-        Usuario agente = reservaRequest.getAgente();
-        return reservaService.crearReserva(cliente, plan, fechaInicio, fechaFin, numeroPersonas, precioTotal, estado, agente);
+    public ResponseEntity<?> crearReserva(@RequestBody ReservaDTO reservaRequest) {
+    	
+    	Reserva nuevaReserva = reservaService.crearReserva(reservaRequest);
+        if (nuevaReserva !=  null) {
+        	
+            
+            return ResponseEntity.ok(nuevaReserva);
+        } else{
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Reserva no creada");
+        
+        }
     }
 
     @GetMapping("/{id}")
@@ -50,9 +51,15 @@ public class ReservaController {
     }
 
     @GetMapping("/todas")
-    public ResponseEntity<List<Reserva>> obtenerTodasLasReservas() {
-        List<Reserva> reservas = reservaService.obtenerTodasLasReservas();
-        return ResponseEntity.ok(reservas);
+    public ResponseEntity<List<ReservaDTO>> obtenerTodasLasReservas() {
+    	  List<Reserva> reservas = reservaService.findAll();
+          List<ReservaDTO> reservasDTO = new ArrayList<>();
+          for (Reserva reserva : reservas) { 
+              ReservaDTO reservaDTO = new ReservaDTO(reserva.getId(),reserva.getIdCliente(),reserva.getIdPlan(),reserva.getIdDestino(),reserva.getFechaInicio(),reserva.getFechaFin(),reserva.getNumeroPersonas(),reserva.getPrecioTotal(),reserva.getEstado(),reserva.getIdAgente());
+              reservasDTO.add(reservaDTO);
+          }
+          return ResponseEntity.ok(reservasDTO);
+        
     }
 
     @PutMapping("/{id}/actualizar")
@@ -67,14 +74,15 @@ public class ReservaController {
         }
     }
 
-    @DeleteMapping("/{id}/eliminar")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarReserva(@PathVariable Integer id) {
-        Reserva reservaExistente = reservaService.obtenerReservaPorId(id);
-        if (reservaExistente != null) {
-            reservaService.eliminarReserva(id);
-            return ResponseEntity.ok("Reserva eliminada exitosamente");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    	 try {
+             reservaService.deleteById(id);
+             
+             return ResponseEntity.ok("reserva eliminado con éxito");
+         } catch (Exception e) {
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                  .body("Error al eliminar la reserva: " + e.getMessage());
+         }
     }
 }

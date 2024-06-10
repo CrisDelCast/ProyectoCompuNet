@@ -47,7 +47,7 @@ public class Reserva {
     @Column(name = "estado", nullable = false)
     private String estado;
 
-    @Column(name = "id_agente", nullable = true)
+    @Column(name = "id_agente", nullable = false)
     private Integer idAgente;
     
     @Transient // Esta anotación indica que este campo no se mapeará a la base de datos
@@ -72,7 +72,12 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "id_plan", nullable = true, insertable = false, updatable = false) // Indicamos que no insertará ni actualizará esta columna directamente
     private Plan plan;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "id_destino", nullable = true, insertable = false, updatable = false) // Indicamos que no insertará ni actualizará esta columna directamente
+    private Destino destino;
+    
+    
     // Getters y Setters
 
     public Cliente getCliente() {
@@ -85,6 +90,17 @@ public class Reserva {
             this.idCliente = cliente.getIdClie(); // Establecemos el ID correspondiente
         }
     }
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
+        if (destino != null) {
+            this.idDestino = destino.getIdDest(); // Establecemos el ID correspondiente
+        }
+    }
+
 
     public Plan getPlan() {
         return plan;
@@ -116,6 +132,7 @@ public class Reserva {
     public void setIdDestino(Integer idDestino) {
         this.idDestino = idDestino;
     }
+    
 
     public Integer getIdPlan() {
         return idPlan;

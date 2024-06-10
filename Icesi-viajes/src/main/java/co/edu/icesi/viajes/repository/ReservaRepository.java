@@ -7,5 +7,5 @@ import co.edu.icesi.viajes.domain.Reserva;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
-    // Puedes agregar métodos personalizados si necesitas consultas específicas para Reserva
+    
 }

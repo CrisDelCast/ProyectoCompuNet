@@ -3,30 +3,40 @@ package co.edu.icesi.viajes.dto;
 import java.util.Date;
 
 import co.edu.icesi.viajes.domain.Cliente;
+import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.domain.Usuario;
 
 public class ReservaDTO {
-
-    private Cliente cliente;
-    private Plan plan;
+	
+	private Integer id;
+	private Integer idCliente;
+	private Integer idDestino;
+    private Integer idPlan;
     private Date fechaInicio;
     private Date fechaFin;
     private int numeroPersonas;
     private double precioTotal;
     private String estado;
-    private Usuario agente;
-	public Cliente getCliente() {
-		return cliente;
+    private Integer idAgente;
+    
+	public Integer getId() {
+		return id;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public Plan getPlan() {
-		return plan;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
-	public void setPlan(Plan plan) {
-		this.plan = plan;
+	public void setIdCliente(Integer cliente) {
+		this.idCliente = cliente;
+	}
+	public Integer getIdPlan() {
+		return idPlan;
+	}
+	public void setIdPlan(Integer plan) {
+		this.idPlan = plan;
 	}
 	public Date getFechaInicio() {
 		return fechaInicio;
@@ -58,23 +68,33 @@ public class ReservaDTO {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Usuario getAgente() {
-		return agente;
+	public Integer getIdAgente() {
+		return idAgente;
 	}
-	public void setAgente(Usuario agente) {
-		this.agente = agente;
+	public void setIdAgente(Integer agente) {
+		this.idAgente = agente;
 	}
-	public ReservaDTO(Cliente cliente, Plan plan, Date fechaInicio, Date fechaFin, int numeroPersonas,
-			double precioTotal, String estado, Usuario agente) {
-		super();
-		this.cliente = cliente;
-		this.plan = plan;
+	public Integer getIdDestino() {
+		return idDestino;
+	}
+	public void setIdDestino(Integer destino) {
+		this.idDestino = destino;
+	}
+	public ReservaDTO(Integer id,Integer idCliente, Integer idPlan,Integer idDestino, Date fechaInicio, Date fechaFin, int numeroPersonas,
+			double precioTotal, String estado, Integer idAgente) {
+		this.id = id;
+		this.idCliente = idCliente;
+		this.idPlan = idPlan;
+		this.idDestino = idDestino;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.numeroPersonas = numeroPersonas;
 		this.precioTotal = precioTotal;
 		this.estado = estado;
-		this.agente = agente;
+		this.idAgente = idAgente;
+	}
+	public ReservaDTO() {
+		
 	}
 
     // Constructor, getters y setters
