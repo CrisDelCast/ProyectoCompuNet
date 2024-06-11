@@ -65,6 +65,12 @@ public class PlanServiceImpl implements PlanService{
         // Luego, podrías guardar el plan utilizando el repositorio
         return planRepository.save(plan);
     }
+
+	@Override
+	public Plan obtenerPlanPorId(Integer id) {
+		return planRepository.findById(id).orElse(null);
+	
+	}
 	
 
 	
