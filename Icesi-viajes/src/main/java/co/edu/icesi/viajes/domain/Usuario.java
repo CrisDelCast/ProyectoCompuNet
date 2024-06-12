@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import co.edu.icesi.viajes.service.RolService;
+import co.edu.icesi.viajes.service.RolServiceImpl;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -43,14 +46,33 @@ public class Usuario {
         name = "roles_Usuarios",
         joinColumns = @JoinColumn(name = "id_usua", referencedColumnName = "id_usua"),
         inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "id")
+        
     )
     private List<Rol> roles;
+    
 
     public Rol getRol() {
         if (roles != null && !roles.isEmpty()) {
             return roles.get(0);
         }
         return null; // Or throw an exception if no role is found
+    }
+    
+    public void setRol(Integer rolId) {
+    	RolService rolService = new RolServiceImpl();
+        if (roles == null && roles.isEmpty()) {
+            if(rolService.findById(rolId).isPresent()) {
+            	roles.add(rolService.findById(rolId).get());
+            }
+        }
+    }
+    
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+    	  this.roles = roles;
     }
 
     // Getters and setters
@@ -134,12 +156,6 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
-    }
+    
 
-    public void setRoles(List<Rol> roles) {
-    	
-        this.roles = roles;
-    }
 }

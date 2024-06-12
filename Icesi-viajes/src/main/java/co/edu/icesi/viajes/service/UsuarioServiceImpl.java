@@ -1,7 +1,11 @@
 package co.edu.icesi.viajes.service;
 
+import co.edu.icesi.viajes.domain.Reserva;
+
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.UsuarioDTO;
+import co.edu.icesi.viajes.mapper.UsuarioMapper;
 import co.edu.icesi.viajes.repository.RolRepository;
 import co.edu.icesi.viajes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,18 +69,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     private RolRepository rolRepository;
 
     @Override
-    public Usuario crearUsuario(Usuario usuario, Integer rolId) {
-        Optional<Rol> rolOptional = rolRepository.findById(rolId);
-        if (rolOptional.isPresent()) {
-            usuario.setFechaCreacion(new Date());
-            usuario.setEstado("A");
-            usuario.getRoles().add(rolOptional.get());
-            return usuarioRepository.save(usuario);
-        } else {
-            throw new IllegalArgumentException("El rol especificado no existe");
-        }
+    public Usuario crearUsuario(UsuarioDTO usuarioDTO) {
+    	Usuario usuario = UsuarioMapper.toEntity(usuarioDTO);
+        return usuarioRepository.save(usuario);
     }
-
+    
   
     @Override
     public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception {

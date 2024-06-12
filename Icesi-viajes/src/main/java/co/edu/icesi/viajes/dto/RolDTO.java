@@ -6,22 +6,22 @@ import co.edu.icesi.viajes.domain.Usuario;
 
 public class RolDTO {
 
-    private Long id;
+    private Integer id;
     private String nombre;
     
-	public RolDTO(Long id, String nombre) {
+	public RolDTO(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
 
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

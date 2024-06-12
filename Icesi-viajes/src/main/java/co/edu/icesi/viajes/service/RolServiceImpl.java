@@ -72,7 +72,7 @@ public class RolServiceImpl implements RolService {
 	
 	    
 
-	    public Rol crearRol(Long idRol, String nombre) {
+	    public Rol crearRol(Integer idRol, String nombre) {
 	        Rol rol = new Rol();
 	        rol.setId(idRol);
 	        rol.setNombre(nombre);
@@ -103,11 +103,6 @@ public class RolServiceImpl implements RolService {
 	        }
 	    }
 
-		@Override
-		public Optional<Rol> findById(Long id) {
-			// TODO Auto-generated method stub
-			return Optional.empty();
-		}
 	
 
 	

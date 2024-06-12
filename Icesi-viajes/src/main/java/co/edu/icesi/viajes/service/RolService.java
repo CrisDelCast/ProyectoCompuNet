@@ -9,6 +9,6 @@ public interface RolService extends GenericService<Rol, Integer> {
 	
 	public List<Rol>consultarRoles(String TipoROl);
 
-	Optional<Rol> findById(Long id);
+	//Optional<Rol> findById(Long id);
 
 }

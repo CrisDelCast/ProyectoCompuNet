@@ -1,10 +1,13 @@
 package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Cliente;
+import co.edu.icesi.viajes.domain.Plan;
+import co.edu.icesi.viajes.domain.Reserva;
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
+import co.edu.icesi.viajes.dto.ReservaDTO;
 import co.edu.icesi.viajes.dto.RolDTO;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,37 +73,47 @@ public class UsuarioController {
         for (Usuario usuario : usuarios) {
         	
         	List<Rol> objects = usuario.getRoles();
-        			List<String> names = objects.stream()
-        			                             .map(obj -> obj.getNombre()) // Lambda expression
+        			List<Integer> rolIds = objects.stream()
+        			                             .map(obj -> obj.getId()) // Lambda expression
         			                             .collect(Collectors.toList());
+        	
 
             //UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
         	UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(), usuario.getNombre(), usuario.getIdentificacion(),
-        			usuario.getEstado(), names);
+        			usuario.getEstado(), rolIds.get(0));
         	
         	usuariosDTO.add(usuarioDTO);
         }
         return ResponseEntity.ok(usuariosDTO);
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioDTO usuarioDTO) {
-        try {
-            Usuario usuarioGuardado = usuarioService.actualizarUsuario(id, new Usuario());
-            return ResponseEntity.ok(usuarioGuardado);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> detalleUsuario(@PathVariable Integer id) {
+    	Usuario usuario = usuarioService.findById(id).get();
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    
+    }
+    
+    
+    @PostMapping(value = "/crear")
+    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+    	
+    	Usuario nuevoUsuario= usuarioService.crearUsuario(usuarioDTO);
+        if (nuevoUsuario !=  null) {
+        	
+            return ResponseEntity.ok(nuevoUsuario);
+        } else{
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("usuario no creada");
+        
         }
     }
     
-    @PostMapping("/crear2")
-    public ResponseEntity<Usuario> crearUsuarido(@RequestBody Usuario usuario, @RequestParam Integer rolId) {
-        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario, rolId);
-        return ResponseEntity.ok(nuevoUsuario);
-    }
-    
-    @PostMapping("/crear")
-    public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) { //,@RequestParam Long rolId
+    @PostMapping("/crear0")
+    public ResponseEntity<String> crearUsuario0(@RequestBody UsuarioDTO usuarioDTO) { //,@RequestParam Long rolId
         try {
             Usuario nuevoUsuario = new Usuario();
             nuevoUsuario.setLogin(usuarioDTO.getLogin());
