@@ -17,7 +17,17 @@ public class Rol {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
 
-    // Getters and setters
+    public Rol () {
+    	
+    }
+    
+	public Rol(Long id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	// Getters and setters
     public Long getId() {
         return id;
     }

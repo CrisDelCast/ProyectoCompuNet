@@ -1,14 +1,19 @@
 package co.edu.icesi.viajes.controller;
 
+import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
+import co.edu.icesi.viajes.dto.RolDTO;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
+import co.edu.icesi.viajes.service.RolService;
 import co.edu.icesi.viajes.service.UsuarioService;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,12 +92,46 @@ public class UsuarioController {
         }
     }
     
-    @PostMapping("/crear")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario, @RequestParam Integer rolId) {
+    @PostMapping("/crear2")
+    public ResponseEntity<Usuario> crearUsuarido(@RequestBody Usuario usuario, @RequestParam Integer rolId) {
         Usuario nuevoUsuario = usuarioService.crearUsuario(usuario, rolId);
         return ResponseEntity.ok(nuevoUsuario);
     }
     
+    @PostMapping("/crear")
+    public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) { //,@RequestParam Long rolId
+        try {
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.setLogin(usuarioDTO.getLogin());
+            nuevoUsuario.setPassword(usuarioDTO.getPassword());
+            nuevoUsuario.setNombre(usuarioDTO.getNombre());
+            nuevoUsuario.setIdentificacion(usuarioDTO.getIdentificacion());
+            nuevoUsuario.setFechaCreacion(usuarioDTO.getFechaVinculacion());
+            nuevoUsuario.setFechaModificacion(usuarioDTO.getFechaModificacion());
+            nuevoUsuario.setUsuCreador("Admin");
+            nuevoUsuario.setEstado("A"); 
+            
+            //List<RolDTO> rolesDTO = usuarioDTO.getRoles();
+            //Rol rol = new Rol();
+            //rol.setId(rolesDTO.get(0).getId());
+            //rol.setNombre(rolesDTO.get(0).getNombre());
+            		
+            
+            List<Rol> roles = usuarioDTO.getRoles() != null ? usuarioDTO.getRoles().stream()
+                    .map(rolDTO -> new Rol(rolDTO.getId(), rolDTO.getNombre())) // Create a new Rol object
+                    .collect(Collectors.toList()) : Collections.emptyList();
+
+            nuevoUsuario.setRoles(roles);
+            
+
+            Usuario usuarioGuardado = usuarioService.save(nuevoUsuario);
+            return ResponseEntity.ok("Usuario creado con éxito: " + usuarioGuardado.getIdUsua());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error al crear el usuario: " + e.getMessage());
+        }
+    }
     
     
     

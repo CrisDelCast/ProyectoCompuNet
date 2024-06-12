@@ -14,7 +14,7 @@ package co.edu.icesi.viajes.dto;
         private String usuCreador;
         private String usuModificador;
         private String estado;
-        private List<Integer> roles;
+        private List<RolDTO> roles;
         private List<String> rolesStr;
         
         
@@ -36,7 +36,27 @@ package co.edu.icesi.viajes.dto;
 			this.estado = estado;
 			this.rolesStr = rolesStr;
 		}
+		
+		
 
+
+		public UsuarioDTO(Integer id, String login, String password, String nombre, String identificacion,
+				Date fechaVinculacion, Date fechaModificacion, String usuCreador, String usuModificador, String estado,
+				List<RolDTO> roles, List<String> rolesStr) {
+			super();
+			this.id = id;
+			this.login = login;
+			this.password = password;
+			this.nombre = nombre;
+			this.identificacion = identificacion;
+			this.fechaVinculacion = fechaVinculacion;
+			this.fechaModificacion = fechaModificacion;
+			this.usuCreador = usuCreador;
+			this.usuModificador = usuModificador;
+			this.estado = estado;
+			this.roles = roles;
+			this.rolesStr = rolesStr;
+		}
 
 
 		public UsuarioDTO(Integer id, String nombre, String estado) {
@@ -117,11 +137,11 @@ package co.edu.icesi.viajes.dto;
             this.estado = estado;
         }
 
-        public List<Integer> getRoles() {
+        public List<RolDTO> getRoles() {
             return roles;
         }
 
-        public void setRoles(List<Integer> roles) {
+        public void setRoles(List<RolDTO> roles) {
             this.roles = roles;
         }
 
