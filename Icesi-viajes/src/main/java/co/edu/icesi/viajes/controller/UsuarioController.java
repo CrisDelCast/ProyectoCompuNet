@@ -1,20 +1,13 @@
 package co.edu.icesi.viajes.controller;
 
-import co.edu.icesi.viajes.domain.Cliente;
-import co.edu.icesi.viajes.domain.Plan;
-import co.edu.icesi.viajes.domain.Reserva;
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
-import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
-import co.edu.icesi.viajes.dto.ReservaDTO;
-import co.edu.icesi.viajes.dto.RolDTO;
+
 import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
-import co.edu.icesi.viajes.service.RolService;
 import co.edu.icesi.viajes.service.UsuarioService;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -81,7 +73,6 @@ public class UsuarioController {
             //UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
         	UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(), usuario.getNombre(), usuario.getIdentificacion(),
         			usuario.getEstado(), rolIds.get(0));
-        	
         	usuariosDTO.add(usuarioDTO);
         }
         return ResponseEntity.ok(usuariosDTO);
@@ -108,8 +99,19 @@ public class UsuarioController {
             return ResponseEntity.ok(nuevoUsuario);
         } else{
             return ResponseEntity.status(HttpStatus.CONFLICT).body("usuario no creada");
-        
         }
+    }
+        
+
+	@PutMapping("/{id}/actualizar")
+    public ResponseEntity<UsuarioDTO> actualizarUsuario(@PathVariable Integer id) {
+    	Usuario usuario  = usuarioService.consultarUsuarioPorId(id);
+
+        if (usuario == null) {
+            return ResponseEntity.notFound().build();
+        }
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getNombre(),usuario.getEstado());
+        return ResponseEntity.ok(usuarioDTO);
     }
     
     @PostMapping("/crear0")
@@ -120,7 +122,6 @@ public class UsuarioController {
             nuevoUsuario.setPassword(usuarioDTO.getPassword());
             nuevoUsuario.setNombre(usuarioDTO.getNombre());
             nuevoUsuario.setIdentificacion(usuarioDTO.getIdentificacion());
-            nuevoUsuario.setFechaCreacion(usuarioDTO.getFechaVinculacion());
             nuevoUsuario.setFechaModificacion(usuarioDTO.getFechaModificacion());
             nuevoUsuario.setUsuCreador("Admin");
             nuevoUsuario.setEstado("A"); 

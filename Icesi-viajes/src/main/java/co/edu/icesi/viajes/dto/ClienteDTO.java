@@ -3,6 +3,8 @@ package co.edu.icesi.viajes.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 
 public class ClienteDTO implements Serializable {
@@ -85,6 +87,7 @@ public class ClienteDTO implements Serializable {
 	    private String telefono2;
 	    private String correo;
 	    private String sexo;
+	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date fechaNacimiento;
 	    private Date fechaCreacion;
 	    private Date fechaModificacion;

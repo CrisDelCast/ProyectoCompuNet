@@ -1,10 +1,8 @@
 package co.edu.icesi.viajes.service;
 
-import co.edu.icesi.viajes.domain.Reserva;
-
-import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
+
 import co.edu.icesi.viajes.mapper.UsuarioMapper;
 import co.edu.icesi.viajes.repository.RolRepository;
 import co.edu.icesi.viajes.repository.UsuarioRepository;
@@ -76,7 +74,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     
   
     @Override
-    public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception {
+    public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, String estado) throws Exception {
             Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsua);
             if (optionalUsuario.isPresent()) {
                 Usuario usuario = optionalUsuario.get();
@@ -84,7 +82,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                 usuario.setPassword(password);
                 usuario.setNombre(nombre);
                 usuario.setIdentificacion(identificacion);
-                usuario.setFechaModificacion(fechaModificacion);
+                usuario.setFechaModificacion(new Date());
                 usuario.setEstado(estado);
 
                 return usuarioRepository.save(usuario);

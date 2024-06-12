@@ -9,8 +9,8 @@ package co.edu.icesi.viajes.dto;
         private String password;
         private String nombre;
         private String identificacion;
-        private Date fechaVinculacion;
         private Date fechaModificacion;
+        private Date fechaCreacion;
         private String usuCreador;
         private String usuModificador;
         private String estado;
@@ -18,19 +18,21 @@ package co.edu.icesi.viajes.dto;
         private Integer rolesStr;
         
         
-        public UsuarioDTO(Integer id, String nombre, String estado, Date fechaVinculacion) {
+        public UsuarioDTO(Integer id, String nombre, String estado, Date fechaModificacion) {
             this.id = id;
             this.nombre = nombre;
             this.estado = estado;
-            this.fechaVinculacion = fechaVinculacion;
+            this.fechaModificacion = fechaModificacion;
         }        
 
 
 		public UsuarioDTO(Integer id, String login, String nombre, String identificacion, String estado,
 				Integer rolesStr) {
+
 			super();
 			this.id = id;
 			this.login = login;
+			this.password = password;
 			this.nombre = nombre;
 			this.identificacion = identificacion;
 			this.estado = estado;
@@ -49,7 +51,6 @@ package co.edu.icesi.viajes.dto;
 			this.password = password;
 			this.nombre = nombre;
 			this.identificacion = identificacion;
-			this.fechaVinculacion = fechaVinculacion;
 			this.fechaModificacion = fechaModificacion;
 			this.usuCreador = usuCreador;
 			this.usuModificador = usuModificador;
@@ -144,6 +145,7 @@ package co.edu.icesi.viajes.dto;
         public void setRoles(List<RolDTO> roles) {
             this.roles = roles;
         }
+        
 
 
 
@@ -159,16 +161,6 @@ package co.edu.icesi.viajes.dto;
 
 
 
-		public Date getFechaVinculacion() {
-			return fechaVinculacion;
-		}
-
-
-
-		public void setFechaVinculacion(Date fechaVinculacion) {
-			this.fechaVinculacion = fechaVinculacion;
-		}
-
 
 		public Integer getRolesStr() {
 			return rolesStr;
@@ -177,6 +169,16 @@ package co.edu.icesi.viajes.dto;
 
 		public void setRolesStr(Integer rolesStr) {
 			this.rolesStr = rolesStr;
+		}
+
+
+		public Date getFechaCreacion() {
+			return fechaCreacion;
+		}
+
+
+		public void setFechaCreacion(Date fechaCreacion) {
+			this.fechaCreacion = fechaCreacion;
 		}
         
 		

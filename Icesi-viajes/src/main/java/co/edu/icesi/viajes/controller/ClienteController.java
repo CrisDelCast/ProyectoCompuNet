@@ -121,7 +121,7 @@ public class ClienteController {
     }
 
     @PostMapping("/crearClienteConFoto")
-    public ResponseEntity<String> crearClienteConFoto(@ModelAttribute ClienteDTO clienteDTO,
+    public ResponseEntity<?> crearClienteConFoto(@ModelAttribute ClienteDTO clienteDTO,
                                                       @RequestParam("foto") MultipartFile foto) throws Exception {
         try {
             Cliente nuevoCliente = new Cliente();
