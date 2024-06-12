@@ -9,7 +9,7 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -17,12 +17,22 @@ public class Rol {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
 
-    // Getters and setters
-    public Long getId() {
+    public Rol () {
+    	
+    }
+    
+	public Rol(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	// Getters and setters
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -102,6 +102,12 @@ public class RolServiceImpl implements RolService {
 	            throw new Exception("Rol no encontrado");
 	        }
 	    }
+
+		@Override
+		public Optional<Rol> findById(Long id) {
+			// TODO Auto-generated method stub
+			return Optional.empty();
+		}
 	
 
 	

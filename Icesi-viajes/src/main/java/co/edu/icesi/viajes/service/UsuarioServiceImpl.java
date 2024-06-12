@@ -74,7 +74,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         Usuario usuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDTO);
     
         
-        Optional<Rol> rolOptional = rolRepository.findById(usuarioDTO.getRoles().get(0));
+        Optional<Rol> rolOptional = rolRepository.findById(usuarioDTO.getRoles().get(0).getId());
         if (rolOptional.isPresent()) {
             usuario.setFechaCreacion(new Date());
             usuario.setEstado("A");

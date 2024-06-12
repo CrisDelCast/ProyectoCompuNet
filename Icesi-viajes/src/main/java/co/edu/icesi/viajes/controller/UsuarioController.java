@@ -1,18 +1,26 @@
 package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Cliente;
+
 import co.edu.icesi.viajes.domain.Destino;
+
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
+
 import co.edu.icesi.viajes.dto.DestinoDTO;
+
+import co.edu.icesi.viajes.dto.RolDTO;
+
 import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
+import co.edu.icesi.viajes.service.RolService;
 import co.edu.icesi.viajes.service.UsuarioService;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,31 +89,52 @@ public class UsuarioController {
         return ResponseEntity.ok(usuariosDTO);
     }
     
-    @PGetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> actualizarUsuario(@PathVariable Integer id) {
     	Usuario usuario  = usuarioService.consultarUsuarioPorId(id);
 
         if (usuario == null) {
             return ResponseEntity.notFound().build();
         }
-        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(),usuario.getPassword(), usuario.getNombre(),usuario.getIdentificacion(), usuario.getEstado(),
-				usuario.getRol().getId());
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getNombre(),usuario.getEstado();
         return ResponseEntity.ok(usuarioDTO);
     }
-    }
+    
+
     
     @PostMapping("/crear")
-    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDto) {
-    	Usuario nuevoUsuario = usuarioService.crearUsuario(usuarioDto);
-        if (nuevoUsuario !=  null) {
+    public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) { //,@RequestParam Long rolId
+        try {
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.setLogin(usuarioDTO.getLogin());
+            nuevoUsuario.setPassword(usuarioDTO.getPassword());
+            nuevoUsuario.setNombre(usuarioDTO.getNombre());
+            nuevoUsuario.setIdentificacion(usuarioDTO.getIdentificacion());
+            nuevoUsuario.setFechaModificacion(usuarioDTO.getFechaModificacion());
+            nuevoUsuario.setUsuCreador("Admin");
+            nuevoUsuario.setEstado("A"); 
             
-            return ResponseEntity.ok(nuevoUsuario);
-        } else{
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuario no creado");
-        
+            //List<RolDTO> rolesDTO = usuarioDTO.getRoles();
+            //Rol rol = new Rol();
+            //rol.setId(rolesDTO.get(0).getId());
+            //rol.setNombre(rolesDTO.get(0).getNombre());
+            		
+            
+            List<Rol> roles = usuarioDTO.getRoles() != null ? usuarioDTO.getRoles().stream()
+                    .map(rolDTO -> new Rol(rolDTO.getId(), rolDTO.getNombre())) // Create a new Rol object
+                    .collect(Collectors.toList()) : Collections.emptyList();
+
+            nuevoUsuario.setRoles(roles);
+            
+
+            Usuario usuarioGuardado = usuarioService.save(nuevoUsuario);
+            return ResponseEntity.ok("Usuario creado con éxito: " + usuarioGuardado.getIdUsua());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error al crear el usuario: " + e.getMessage());
         }
     }
-    
     
     
     
