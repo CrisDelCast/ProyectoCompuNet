@@ -9,8 +9,8 @@ package co.edu.icesi.viajes.dto;
         private String password;
         private String nombre;
         private String identificacion;
-        private Date fechaVinculacion;
         private Date fechaModificacion;
+        private Date fechaCreacion;
         private String usuCreador;
         private String usuModificador;
         private String estado;
@@ -18,19 +18,20 @@ package co.edu.icesi.viajes.dto;
         private List<String> rolesStr;
         
         
-        public UsuarioDTO(Integer id, String nombre, String estado, Date fechaVinculacion) {
+        public UsuarioDTO(Integer id, String nombre, String estado, Date fechaModificacion) {
             this.id = id;
             this.nombre = nombre;
             this.estado = estado;
-            this.fechaVinculacion = fechaVinculacion;
+            this.fechaModificacion = fechaModificacion;
         }        
 
 
-		public UsuarioDTO(Integer id, String login, String nombre, String identificacion, String estado,
+		public UsuarioDTO(Integer id, String login,String password, String nombre, String identificacion, String estado,
 				List<String> rolesStr) {
 			super();
 			this.id = id;
 			this.login = login;
+			this.password = password;
 			this.nombre = nombre;
 			this.identificacion = identificacion;
 			this.estado = estado;
@@ -139,16 +140,6 @@ package co.edu.icesi.viajes.dto;
 
 
 
-		public Date getFechaVinculacion() {
-			return fechaVinculacion;
-		}
-
-
-
-		public void setFechaVinculacion(Date fechaVinculacion) {
-			this.fechaVinculacion = fechaVinculacion;
-		}
-
 
 		public List<String> getRolesStr() {
 			return rolesStr;
@@ -157,6 +148,16 @@ package co.edu.icesi.viajes.dto;
 
 		public void setRolesStr(List<String> rolesStr) {
 			this.rolesStr = rolesStr;
+		}
+
+
+		public Date getFechaCreacion() {
+			return fechaCreacion;
+		}
+
+
+		public void setFechaCreacion(Date fechaCreacion) {
+			this.fechaCreacion = fechaCreacion;
 		}
         
 		

@@ -1,7 +1,11 @@
 package co.edu.icesi.viajes.service;
 
+import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.UsuarioDTO;
+import co.edu.icesi.viajes.mapper.DestinoMapper;
+import co.edu.icesi.viajes.mapper.UsuarioMapper;
 import co.edu.icesi.viajes.repository.RolRepository;
 import co.edu.icesi.viajes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +69,12 @@ public class UsuarioServiceImpl implements UsuarioService{
     private RolRepository rolRepository;
 
     @Override
-    public Usuario crearUsuario(Usuario usuario, Integer rolId) {
-        Optional<Rol> rolOptional = rolRepository.findById(rolId);
+    public Usuario crearUsuario(UsuarioDTO usuarioDTO) {
+        
+        Usuario usuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDTO);
+    
+        
+        Optional<Rol> rolOptional = rolRepository.findById(usuarioDTO.getRoles().get(0));
         if (rolOptional.isPresent()) {
             usuario.setFechaCreacion(new Date());
             usuario.setEstado("A");
@@ -79,7 +87,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
   
     @Override
-    public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, Date fechaModificacion, String estado) throws Exception {
+    public Usuario modificarUsuario(Integer idUsua, String login, String password, String nombre, String identificacion, String estado) throws Exception {
             Optional<Usuario> optionalUsuario = usuarioRepository.findById(idUsua);
             if (optionalUsuario.isPresent()) {
                 Usuario usuario = optionalUsuario.get();
@@ -87,7 +95,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                 usuario.setPassword(password);
                 usuario.setNombre(nombre);
                 usuario.setIdentificacion(identificacion);
-                usuario.setFechaModificacion(fechaModificacion);
+                usuario.setFechaModificacion(new Date());
                 usuario.setEstado(estado);
 
                 return usuarioRepository.save(usuario);

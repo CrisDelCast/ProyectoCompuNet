@@ -30,8 +30,8 @@ class TestUsuario {
     @Test
     void testModificarUsuario() throws Exception {
         log.info("Ejecutando testModificarUsuario()...");
-        Date fechaModificacion = new Date("2021/10/20");
-        Usuario usuarioModificado = usuario.modificarUsuario(1234, "logo", "567", "david", "234", fechaModificacion, "I");
+        
+        Usuario usuarioModificado = usuario.modificarUsuario(1234, "logo", "567", "david", "234", "I");
         assertNotNull(usuarioModificado);
         assertEquals("logo", usuarioModificado.getLogin());
         assertEquals("david", usuarioModificado.getNombre());

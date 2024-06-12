@@ -1,8 +1,12 @@
 package co.edu.icesi.viajes.controller;
 
+import co.edu.icesi.viajes.domain.Cliente;
+import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
+import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
+import co.edu.icesi.viajes.dto.DestinoDTO;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
 import co.edu.icesi.viajes.dto.UsuarioResponseDTO;
 import co.edu.icesi.viajes.service.UsuarioService;
@@ -69,7 +73,7 @@ public class UsuarioController {
         			                             .collect(Collectors.toList());
 
             //UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
-        	UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(), usuario.getNombre(), usuario.getIdentificacion(),
+        	UsuarioDTO usuarioDTO = new UsuarioDTO( usuario.getIdUsua(),usuario.getLogin(),usuario.getPassword(), usuario.getNombre(), usuario.getIdentificacion(),
         			usuario.getEstado(), names);
         	
         	usuariosDTO.add(usuarioDTO);
@@ -77,20 +81,29 @@ public class UsuarioController {
         return ResponseEntity.ok(usuariosDTO);
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioDTO usuarioDTO) {
-        try {
-            Usuario usuarioGuardado = usuarioService.actualizarUsuario(id, new Usuario());
-            return ResponseEntity.ok(usuarioGuardado);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @PGetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> actualizarUsuario(@PathVariable Integer id) {
+    	Usuario usuario  = usuarioService.consultarUsuarioPorId(id);
+
+        if (usuario == null) {
+            return ResponseEntity.notFound().build();
         }
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(),usuario.getPassword(), usuario.getNombre(),usuario.getIdentificacion(), usuario.getEstado(),
+				usuario.getRol().getId());
+        return ResponseEntity.ok(usuarioDTO);
+    }
     }
     
     @PostMapping("/crear")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario, @RequestParam Integer rolId) {
-        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario, rolId);
-        return ResponseEntity.ok(nuevoUsuario);
+    public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO usuarioDto) {
+    	Usuario nuevoUsuario = usuarioService.crearUsuario(usuarioDto);
+        if (nuevoUsuario !=  null) {
+            
+            return ResponseEntity.ok(nuevoUsuario);
+        } else{
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuario no creado");
+        
+        }
     }
     
     
