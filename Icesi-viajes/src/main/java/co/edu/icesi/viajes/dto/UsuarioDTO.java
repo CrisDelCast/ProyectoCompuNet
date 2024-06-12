@@ -15,6 +15,7 @@ package co.edu.icesi.viajes.dto;
         private String usuModificador;
         private String estado;
         private List<Integer> roles;
+        private List<String> rolesStr;
         
         
         public UsuarioDTO(Integer id, String nombre, String estado, Date fechaVinculacion) {
@@ -22,11 +23,23 @@ package co.edu.icesi.viajes.dto;
             this.nombre = nombre;
             this.estado = estado;
             this.fechaVinculacion = fechaVinculacion;
-        }
+        }        
+
+
+		public UsuarioDTO(Integer id, String login, String nombre, String identificacion, String estado,
+				List<String> rolesStr) {
+			super();
+			this.id = id;
+			this.login = login;
+			this.nombre = nombre;
+			this.identificacion = identificacion;
+			this.estado = estado;
+			this.rolesStr = rolesStr;
+		}
 
 
 
-        public UsuarioDTO(Integer id, String nombre, String estado) {
+		public UsuarioDTO(Integer id, String nombre, String estado) {
     		super();
     		this.id = id;
     		this.nombre = nombre;
@@ -135,5 +148,17 @@ package co.edu.icesi.viajes.dto;
 		public void setFechaVinculacion(Date fechaVinculacion) {
 			this.fechaVinculacion = fechaVinculacion;
 		}
+
+
+		public List<String> getRolesStr() {
+			return rolesStr;
+		}
+
+
+		public void setRolesStr(List<String> rolesStr) {
+			this.rolesStr = rolesStr;
+		}
         
+		
+		
     }

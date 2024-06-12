@@ -1,5 +1,6 @@
 package co.edu.icesi.viajes.controller;
 
+import co.edu.icesi.viajes.domain.Rol;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.dto.CredencialesDTO;
 import co.edu.icesi.viajes.dto.UsuarioDTO;
@@ -9,6 +10,7 @@ import co.edu.icesi.viajes.service.UsuarioService;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,9 +60,19 @@ public class UsuarioController {
     public ResponseEntity<List<UsuarioDTO>> obtenerTodosLosUsuarios() {
         List<Usuario> usuarios = usuarioService.findAll();
         List<UsuarioDTO> usuariosDTO = new ArrayList<>();
+        
         for (Usuario usuario : usuarios) {
-            UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
-            usuariosDTO.add(usuarioDTO);
+        	
+        	List<Rol> objects = usuario.getRoles();
+        			List<String> names = objects.stream()
+        			                             .map(obj -> obj.getNombre()) // Lambda expression
+        			                             .collect(Collectors.toList());
+
+            //UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(), usuario.getNombre(), usuario.getEstado(), usuario.getFechaCreacion());
+        	UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsua(),usuario.getLogin(), usuario.getNombre(), usuario.getIdentificacion(),
+        			usuario.getEstado(), names);
+        	
+        	usuariosDTO.add(usuarioDTO);
         }
         return ResponseEntity.ok(usuariosDTO);
     }
