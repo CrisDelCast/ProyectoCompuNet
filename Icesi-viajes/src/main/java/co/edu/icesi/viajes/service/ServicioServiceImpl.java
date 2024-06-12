@@ -25,8 +25,8 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     
-    public Optional<Servicio> findById(Integer id) {
-        return servicioRepository.findById(id);
+    public Servicio findById(Integer id) {
+        return servicioRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -50,10 +50,10 @@ public class ServicioServiceImpl implements ServicioService {
     public void deleteById(Integer idServicio) throws Exception {
         servicioRepository.deleteById(idServicio);
     }
-
+    
     @Override
     public void validate(Servicio entity) throws Exception {
-        // Validaciones necesarias para el objeto Servicio
+        
         if (entity.getNombre() == null || entity.getNombre().isEmpty()) {
             throw new Exception("El nombre del servicio es obligatorio");
         }
@@ -76,9 +76,8 @@ public class ServicioServiceImpl implements ServicioService {
 
     @Override
     public ServicioDTO editServicio(ServicioDTO servicioDto) throws Exception {
-        Optional<Servicio> optionalServicio = findById(servicioDto.getIdServicio());
-        if (optionalServicio.isPresent()) {
-            Servicio servicio = optionalServicio.get();
+        Servicio servicio = findById(servicioDto.getIdServicio());
+        if (servicio != null) {
             servicio.setNombre(servicioDto.getNombre());
             servicio.setDescripcion(servicioDto.getDescripcion());
             servicio.setPrecio((double) servicioDto.getPrecio());
@@ -87,7 +86,8 @@ public class ServicioServiceImpl implements ServicioService {
         } else {
             throw new Exception("Servicio no encontrado");
         }
-    }	
+    }
+
     
 
     

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.icesi.viajes.domain.Reserva;
 import co.edu.icesi.viajes.domain.Servicio;
 import co.edu.icesi.viajes.dto.ServicioDTO;
 import co.edu.icesi.viajes.service.ServicioServiceImpl;
@@ -63,15 +64,26 @@ public class ServicioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado");
         }
     }
-    /**
+    **/
+ 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<?> eliminarServicio(@PathVariable Long id) {
+    public ResponseEntity<?> eliminarServicio(@PathVariable Integer id) {
         try {
-            servicioService.deleteServicio(id);
+            servicioService.deleteById(id);
             return ResponseEntity.ok().body("Servicio eliminado con éxito");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servicio no encontrado: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Servicio no encontrado: " + e.getMessage());
         }
     }
-    **/
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Servicio> findById(@PathVariable Integer id) {
+        Servicio servicio = servicioService.findById(id);
+        if (servicio != null) {
+            return ResponseEntity.ok(servicio);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
 }
